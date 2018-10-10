@@ -6,10 +6,10 @@ import java.util.List;
 import javax.inject.Inject;
 import okhttp3.Headers;
 
-public class BrandRequest extends BaseRequest<BrandService> {
+public class ResultRequest extends BaseRequest<BrandService> {
 
   @Inject
-  public BrandRequest() {
+  public ResultRequest() {
 
   }
 

@@ -5,6 +5,6 @@ import io.reactivex.Single;
 import java.util.List;
 import retrofit2.http.GET;
 
-public interface BrandService {
+public interface ResultService {
   @GET("car_meta/brands") Single<List<SearchItem>> getBrands();
 }

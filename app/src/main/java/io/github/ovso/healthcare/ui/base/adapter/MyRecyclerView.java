@@ -6,18 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import io.github.ovso.healthcare.utils.ObjectUtils;
 
-public class MyViewRecyclerView extends RecyclerView {
+public class MyRecyclerView extends RecyclerView {
   private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
 
-  public MyViewRecyclerView(Context context) {
+  public MyRecyclerView(Context context) {
     super(context);
   }
 
-  public MyViewRecyclerView(Context context, @Nullable AttributeSet attrs) {
+  public MyRecyclerView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public MyViewRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+  public MyRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
   }
 

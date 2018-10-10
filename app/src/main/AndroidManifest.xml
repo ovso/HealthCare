@@ -38,7 +38,7 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme.NoActionBar"/>
     <activity
-        android:name="io.github.ovso.healthcare.ui.detail.DetailActivity"
+        android:name=".ui.result.ResultActivity"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme.NoActionBar"/>
   </application>

@@ -17,21 +17,22 @@ import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
+import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.MyViewRecyclerView;
+import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
 import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener;
-import io.github.ovso.healthcare.ui.detail.DetailActivity;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
+import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
-    OnRecyclerViewItemClickListener, SearchLiveo.OnSearchListener {
+    OnRecyclerViewItemClickListener<Disease>, SearchLiveo.OnSearchListener {
 
   @Inject MainPresenter presenter;
   @Inject MainAdapter adapter;
   @Inject BaseAdapterView adapterView;
-  @BindView(R.id.recycler_view) MyViewRecyclerView recyclerView;
+  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
   @BindView(R.id.drawer_layout) DrawerLayout drawer;
   @BindView(R.id.navigation_view) NavigationView navigationView;
   @BindView(R.id.search_liveo) SearchLiveo searchLiveo;
@@ -63,9 +64,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     adapterView.refresh();
   }
 
-  @Override public void navigateToDetail(Object data) {
-    Intent intent = new Intent(this, DetailActivity.class);
-    intent.putExtra("data", (Parcelable) data);
+  @Override public void navigateToDetail(Disease disease) {
+    Intent intent = new Intent(this, ResultActivity.class);
     startActivity(intent);
   }
 
@@ -102,8 +102,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     searchLiveo.minToSearch(0);
   }
 
-  @Override public void onListItemClick(View view, Object data, int itemPosition) {
-    //presenter.onListItemClick(data, itemPosition);
+  @Override public void onListItemClick(View view, Disease disease, int itemPosition) {
+    presenter.onListItemClick(disease, itemPosition);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

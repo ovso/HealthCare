@@ -3,7 +3,7 @@ package io.github.ovso.healthcare.ui.brand.di;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.healthcare.data.network.BrandRequest;
-import io.github.ovso.healthcare.data.network.model.Brand;
+import io.github.ovso.healthcare.data.network.model.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.brand.BrandPresenter;
@@ -17,7 +17,7 @@ import javax.inject.Singleton;
 
   @Provides BrandPresenter provideBrandPresenter(BrandPresenter.View view,
       ResourceProvider resourceProvider, BrandRequest brandRequest,
-      SchedulersFacade schedulersFacade, BaseAdapterDataModel<Brand> adapterDataModel) {
+      SchedulersFacade schedulersFacade, BaseAdapterDataModel<SearchItem> adapterDataModel) {
     return new BrandPresenterImpl(view, resourceProvider, brandRequest, schedulersFacade,
         adapterDataModel);
   }
@@ -26,7 +26,7 @@ import javax.inject.Singleton;
     return new BrandAdapter();
   }
 
-  @Provides BaseAdapterDataModel<Brand> provideMainAdapterDataModel(BrandAdapter adapter) {
+  @Provides BaseAdapterDataModel<SearchItem> provideMainAdapterDataModel(BrandAdapter adapter) {
     return adapter;
   }
 

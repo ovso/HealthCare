@@ -1,4 +1,4 @@
-package io.github.ovso.healthcare.ui.brand.adapter;
+package io.github.ovso.healthcare.ui.result.adapter;
 
 import android.view.ViewGroup;
 import io.github.ovso.healthcare.data.network.model.SearchItem;
@@ -6,20 +6,22 @@ import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.adapter.BaseRecyclerAdapter;
 import io.github.ovso.healthcare.ui.base.adapter.BaseViewHolder;
+import io.github.ovso.healthcare.ui.brand.adapter.BrandViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
-    BaseAdapterDataModel<SearchItem> {
+public class ResultAdapter extends BaseRecyclerAdapter
+    implements BaseAdapterView, BaseAdapterDataModel<SearchItem> {
+
   private List<SearchItem> items = new ArrayList<>();
 
   @Override public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return BrandViewHolder.create(parent);
+    return ResultViewHolder.create(parent);
   }
 
   @Override
   public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof BrandViewHolder) {
+    if (viewHolder instanceof ResultViewHolder) {
       BrandViewHolder holder = (BrandViewHolder) viewHolder;
       holder.bind(items.get(position));
       holder.setOnRecyclerViewItemClickListener(onRecyclerViewItemClickListener);

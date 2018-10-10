@@ -1,10 +1,12 @@
 package io.github.ovso.healthcare.ui.main;
 
+import io.github.ovso.healthcare.data.network.model.Disease;
+
 public interface MainPresenter {
 
   void onCreated();
 
-  void onListItemClick(Object data, int itemPosition);
+  void onListItemClick(Disease disease, int itemPosition);
 
   void changedSearch(CharSequence charSequence);
 
@@ -14,7 +16,7 @@ public interface MainPresenter {
 
     void refresh();
 
-    void navigateToDetail(Object data);
+    void navigateToDetail(Disease disease);
 
     void setupToolbar();
 

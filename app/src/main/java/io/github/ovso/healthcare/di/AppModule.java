@@ -9,10 +9,4 @@ import dagger.Provides;
   @Provides Context provideContext(Application application) {
     return application;
   }
-
-  /*
-  @Singleton @Provides ResourceProvider provideResourceProvider(Context context) {
-    return new ResourceProvider(context);
-  }
-  */
 }

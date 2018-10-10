@@ -10,9 +10,8 @@ import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.Car;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.MyViewRecyclerView;
+import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
 import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener;
-import io.github.ovso.healthcare.ui.detail.DetailActivity;
 import io.github.ovso.healthcare.ui.main.MainActivity;
 import io.github.ovso.healthcare.ui.model.adapter.ModelAdapter;
 import javax.inject.Inject;
@@ -23,7 +22,7 @@ public class ModelActivity extends BaseActivity implements ModelPresenter.View,
   @Inject ModelPresenter presenter;
   @Inject ModelAdapter adapter;
   @Inject BaseAdapterView adapterView;
-  @BindView(R.id.recycler_view) MyViewRecyclerView recyclerView;
+  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_model;
@@ -60,9 +59,6 @@ public class ModelActivity extends BaseActivity implements ModelPresenter.View,
   }
 
   @Override public void navigateToDetail(Car car) {
-    Intent intent = new Intent(this, DetailActivity.class);
-    intent.putExtra("data", car);
-    startActivity(intent);
   }
 
   @Override public void navigateToMain(int id) {

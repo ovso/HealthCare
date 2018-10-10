@@ -5,18 +5,18 @@ import android.view.View;
 import butterknife.ButterKnife;
 import lombok.Setter;
 
-public class BaseViewHolder extends RecyclerView.ViewHolder {
+public class BaseViewHolder<T> extends RecyclerView.ViewHolder {
   public BaseViewHolder(View itemView) {
     super(itemView);
     ButterKnife.bind(this, itemView);
   }
 
-  protected Object data;
-  protected void bind(Object $data) {
+  protected T data;
+
+  protected void bind(T $data) {
     data = $data;
   }
 
-  @Setter public OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
+  @Setter public OnRecyclerViewItemClickListener<T> onRecyclerViewItemClickListener;
   @Setter public int itemPosition;
-
 }

@@ -6,9 +6,6 @@ import dagger.android.support.AndroidSupportInjectionModule;
 import io.github.ovso.healthcare.ui.brand.BrandActivity;
 import io.github.ovso.healthcare.ui.brand.di.BrandActivityModule;
 import io.github.ovso.healthcare.ui.brand.di.BrandActivityViewModule;
-import io.github.ovso.healthcare.ui.detail.DetailActivity;
-import io.github.ovso.healthcare.ui.detail.di.DetailActivityModule;
-import io.github.ovso.healthcare.ui.detail.di.DetailActivityViewModule;
 import io.github.ovso.healthcare.ui.main.MainActivity;
 import io.github.ovso.healthcare.ui.main.di.MainActivityModule;
 import io.github.ovso.healthcare.ui.main.di.MainActivityViewModule;
@@ -18,6 +15,9 @@ import io.github.ovso.healthcare.ui.model.di.ModelActivityViewModule;
 import io.github.ovso.healthcare.ui.model_group.ModelGroupActivity;
 import io.github.ovso.healthcare.ui.model_group.di.ModelGroupActivityModule;
 import io.github.ovso.healthcare.ui.model_group.di.ModelGroupActivityViewModule;
+import io.github.ovso.healthcare.ui.result.ResultActivity;
+import io.github.ovso.healthcare.ui.result.di.ResultActivityModule;
+import io.github.ovso.healthcare.ui.result.di.ResultActivityViewModule;
 import javax.inject.Singleton;
 
 @Module(includes = { AndroidSupportInjectionModule.class })
@@ -47,7 +47,7 @@ public abstract class ActivityBuilder {
   abstract ModelActivity bindModelActivity();
 
   @Singleton @ContributesAndroidInjector(modules = {
-      DetailActivityModule.class, DetailActivityViewModule.class
+      ResultActivityModule.class, ResultActivityViewModule.class
   })
-  abstract DetailActivity bindDetailActivity();
+  abstract ResultActivity bindResultActivity();
 }

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.BrandRequest;
-import io.github.ovso.healthcare.data.network.model.Brand;
+import io.github.ovso.healthcare.data.network.model.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
@@ -20,11 +20,11 @@ public class BrandPresenterImpl implements BrandPresenter {
   private ResourceProvider resourceProvider;
   private SchedulersFacade schedulersFacade;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
-  private BaseAdapterDataModel<Brand> adapterDataModel;
+  private BaseAdapterDataModel<SearchItem> adapterDataModel;
 
   public BrandPresenterImpl(BrandPresenter.View $view, ResourceProvider $resourceProvider,
       BrandRequest $brandRequest, SchedulersFacade $schedulersFacade,
-      BaseAdapterDataModel<Brand> $adapterDataModel) {
+      BaseAdapterDataModel<SearchItem> $adapterDataModel) {
     view = $view;
     brandRequest = $brandRequest;
     resourceProvider = $resourceProvider;
@@ -40,8 +40,8 @@ public class BrandPresenterImpl implements BrandPresenter {
         .subscribeOn(schedulersFacade.io())
         .observeOn(schedulersFacade.ui())
         .subscribe(
-            new Consumer<List<Brand>>() {
-              @Override public void accept(List<Brand> items) throws Exception {
+            new Consumer<List<SearchItem>>() {
+              @Override public void accept(List<SearchItem> items) throws Exception {
                 adapterDataModel.addAll(items);
                 view.refresh();
               }
@@ -58,8 +58,8 @@ public class BrandPresenterImpl implements BrandPresenter {
   }
 
   @Override public void onListItemClick(Object data) {
-    if(data instanceof Brand) {
-      view.navigateToModelGroup(((Brand) data).getId());
+    if(data instanceof SearchItem) {
+      view.navigateToModelGroup(((SearchItem) data).getId());
     }
 
   }

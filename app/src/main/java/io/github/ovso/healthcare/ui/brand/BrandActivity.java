@@ -9,7 +9,7 @@ import butterknife.BindView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.MyViewRecyclerView;
+import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
 import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener;
 import io.github.ovso.healthcare.ui.brand.adapter.BrandAdapter;
 import io.github.ovso.healthcare.ui.model_group.ModelGroupActivity;
@@ -21,7 +21,7 @@ public class BrandActivity extends BaseActivity implements BrandPresenter.View,
   @Inject BrandPresenter presenter;
   @Inject BrandAdapter adapter;
   @Inject BaseAdapterView adapterView;
-  @BindView(R.id.recycler_view) MyViewRecyclerView recyclerView;
+  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_brand;
