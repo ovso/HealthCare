@@ -27,6 +27,7 @@ ext {
   rxfirebase_version = '16.0.1.0'
 
   recyclerview_animators_version = '2.2.7'
+  recyclerview_divider_version = '2.0.1'
   guava_version = '23.5-android'
   licensesdialog_version = '1.8.3'
   glide_version = '4.8.0'

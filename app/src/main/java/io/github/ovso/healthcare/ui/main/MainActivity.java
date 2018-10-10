@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
+import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
@@ -50,6 +52,11 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
     recyclerView.setOnItemClickListener(this);
+    RecyclerViewDivider.with(this)
+        .size(1)
+        .color(ContextCompat.getColor(this, R.color.color_divider))
+        .build()
+        .addTo(recyclerView);
   }
 
   @Override public void refresh() {
