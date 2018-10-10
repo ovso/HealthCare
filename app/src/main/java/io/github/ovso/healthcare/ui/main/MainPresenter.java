@@ -6,6 +6,8 @@ public interface MainPresenter {
 
   void onListItemClick(Object data, int itemPosition);
 
+  void changedSearch(CharSequence charSequence);
+
   interface View {
 
     void setupRecyclerView();

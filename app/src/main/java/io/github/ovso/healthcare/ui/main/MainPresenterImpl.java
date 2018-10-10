@@ -1,10 +1,11 @@
 package io.github.ovso.healthcare.ui.main;
 
-import io.github.ovso.healthcare.data.network.MainRequest;
+import android.text.TextUtils;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -17,6 +18,7 @@ public class MainPresenterImpl implements MainPresenter {
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private SchedulersFacade schedulers;
   private BaseAdapterDataModel<Disease> adapterDataModel;
+  private String fileName;
 
   public MainPresenterImpl(MainPresenter.View $view, ResourceProvider $ResourceProvider,
       SchedulersFacade $schedulers, BaseAdapterDataModel<Disease> $adapterDataModel) {
@@ -24,6 +26,7 @@ public class MainPresenterImpl implements MainPresenter {
     resourceProvider = $ResourceProvider;
     schedulers = $schedulers;
     adapterDataModel = $adapterDataModel;
+    fileName = "disease.json";
   }
 
   @Override public void onCreated() {
@@ -37,23 +40,54 @@ public class MainPresenterImpl implements MainPresenter {
   private void reqDiseases() {
 
     Disposable subscribe = Single.fromCallable(() -> {
-      String json = resourceProvider.assetsToJson("disease.json");
+      String json = resourceProvider.assetsToJson(fileName);
       return Disease.fromJson(json);
     })
         .subscribeOn(schedulers.io())
         .observeOn(schedulers.ui())
-        .subscribe(o -> {
-          Timber.d("size = " + o.size());
-          adapterDataModel.addAll(o);
+        .subscribe(items -> {
+          adapterDataModel.addAll(items);
           view.refresh();
-        }, throwable -> {
-          Timber.d(throwable);
-        });
+        }, throwable -> Timber.d(throwable));
     compositeDisposable.add(subscribe);
   }
 
   @Override public void onListItemClick(Object data, int itemPosition) {
     Timber.d("data = " + data);
     view.navigateToDetail(data);
+  }
+
+  @Override public void changedSearch(CharSequence charSequence) {
+    String search = charSequence.toString().replaceAll("\\p{Z}", "");
+    Timber.d("search = " + search);
+    if (!TextUtils.isEmpty(search)) {
+      Disposable subscribe = Observable.fromCallable(() -> {
+        String json = resourceProvider.assetsToJson(fileName);
+        return Disease.fromJson(json);
+      })
+          .flatMapIterable(diseases -> diseases)
+          .filter(disease -> {
+            String inpu = charSequence.toString();
+            String name = disease.getName();
+            name = name.replaceAll("\\p{Z}", "");
+            inpu = inpu.replaceAll("\\p{Z}", "");
+            return name.contains(inpu);
+          })
+          .toList().subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe(diseases -> {
+            adapterDataModel.clear();
+            adapterDataModel.addAll(diseases);
+            view.refresh();
+          }, throwable -> Timber.d(throwable));
+      compositeDisposable.add(subscribe);
+    } else {
+      Observable.fromCallable(() -> {
+        String json = resourceProvider.assetsToJson(fileName);
+        return Disease.fromJson(json);
+      }).subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe(items -> {
+        adapterDataModel.clear();
+        adapterDataModel.addAll(items);
+        view.refresh();
+      });
+    }
   }
 }

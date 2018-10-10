@@ -22,7 +22,6 @@ import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener
 import io.github.ovso.healthcare.ui.detail.DetailActivity;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
 import javax.inject.Inject;
-import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
     OnRecyclerViewItemClickListener, SearchLiveo.OnSearchListener {
@@ -93,7 +92,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   @Override public void setupSearchLiveo() {
     searchLiveo.with(this).build();
     searchLiveo.showVoice();
-    searchLiveo.minToSearch(1);
+    searchLiveo.minToSearch(0);
   }
 
   @Override public void onListItemClick(View view, Object data, int itemPosition) {
@@ -101,6 +100,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   }
 
   @Override public void changedSearch(CharSequence charSequence) {
-    Timber.d("charSequence = " + charSequence);
+    presenter.changedSearch(charSequence);
   }
 }
