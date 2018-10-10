@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     recyclerView.setOnItemClickListener(this);
     RecyclerViewDivider.with(this)
         .size(1)
-        .color(ContextCompat.getColor(this, R.color.color_divider))
+        .color(ContextCompat.getColor(this, android.R.color.darker_gray))
         .build()
         .addTo(recyclerView);
   }
@@ -108,5 +108,15 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
 
   @Override public void changedSearch(CharSequence charSequence) {
     presenter.changedSearch(charSequence);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (data != null) {
+      if (requestCode == SearchLiveo.REQUEST_CODE_SPEECH_INPUT) {
+        searchLiveo.resultVoice(requestCode, resultCode, data);
+      }
+    }
   }
 }
