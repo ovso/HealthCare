@@ -102,6 +102,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     searchLiveo.minToSearch(0);
   }
 
+  @Override public void closeDrawer() {
+    drawer.closeDrawer(GravityCompat.START);
+  }
+
   @Override public void onListItemClick(View view, Disease disease, int itemPosition) {
     presenter.onListItemClick(disease, itemPosition);
   }
@@ -118,5 +122,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
         searchLiveo.resultVoice(requestCode, resultCode, data);
       }
     }
+  }
+
+  @Override public void onBackPressed() {
+
+    presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START));
   }
 }

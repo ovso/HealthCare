@@ -1,15 +1,23 @@
 package io.github.ovso.healthcare.ui.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import io.github.ovso.healthcare.ui.base.BaseActivity;
+import android.support.v7.app.AppCompatActivity;
+import io.github.ovso.healthcare.R;
+import io.github.ovso.healthcare.ui.main.MainActivity;
 
-public class SplashActivity extends BaseActivity {
-  @Override protected int getLayoutResID() {
-    return 0;
+public class SplashActivity extends AppCompatActivity {
+
+  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_splash);
+
+    navigateToMain();
   }
 
-  @Override protected void onCreated(@Nullable Bundle savedInstanceState) {
-
+  private void navigateToMain() {
+    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    finish();
   }
 }

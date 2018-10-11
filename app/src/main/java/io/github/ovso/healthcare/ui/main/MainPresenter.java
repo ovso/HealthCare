@@ -10,6 +10,8 @@ public interface MainPresenter {
 
   void changedSearch(CharSequence charSequence);
 
+  void onBackPressed(boolean isDrawerOpen);
+
   interface View {
 
     void setupRecyclerView();
@@ -21,5 +23,9 @@ public interface MainPresenter {
     void setupToolbar();
 
     void setupSearchLiveo();
+
+    void closeDrawer();
+
+    void finish();
   }
 }

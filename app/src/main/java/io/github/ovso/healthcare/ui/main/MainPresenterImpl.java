@@ -91,4 +91,14 @@ public class MainPresenterImpl implements MainPresenter {
       });
     }
   }
+
+  @Override public void onBackPressed(boolean isDrawerOpen) {
+    if (isDrawerOpen) {
+      view.closeDrawer();
+    } else {
+      compositeDisposable.clear();
+      view.finish();
+    }
+
+  }
 }
