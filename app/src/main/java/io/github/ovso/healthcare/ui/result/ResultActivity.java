@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class ResultActivity extends BaseActivity implements ResultPresenter.View {
 
-  //@Inject ResultPresenter presenter;
+  @Inject ResultPresenter presenter;
   @Inject ResultAdapter adapter;
   @Inject BaseAdapterView adapterView;
   @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
@@ -23,6 +23,6 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
   }
 
   @Override protected void onCreated(@Nullable Bundle savedInstanceState) {
-    //presenter.onCreate();
+    presenter.onCreate();
   }
 }

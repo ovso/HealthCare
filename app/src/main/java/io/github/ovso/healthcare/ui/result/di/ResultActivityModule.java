@@ -18,18 +18,15 @@ import javax.inject.Singleton;
   @Provides ResultPresenter provideResultPresenter(ResultPresenter.View view,
       ResourceProvider resourceProvider, ResultRequest ResultRequest,
       SchedulersFacade schedulersFacade, BaseAdapterDataModel<SearchItem> adapterDataModel) {
-    return new ResultPresenterImpl(view, resourceProvider, ResultRequest, schedulersFacade,
-        adapterDataModel);
+    return new ResultPresenterImpl(view, resourceProvider, ResultRequest, schedulersFacade, adapterDataModel);
   }
 
   @Singleton @Provides ResultAdapter provideResultAdapter() {
     return new ResultAdapter();
   }
-
-  @Provides BaseAdapterDataModel provideResultAdapterDataModel(ResultAdapter adapter) {
+  @Provides BaseAdapterDataModel<SearchItem> provideAdapterDataModel(ResultAdapter adapter) {
     return adapter;
   }
-
   @Provides BaseAdapterView provideResultAdapterView(ResultAdapter adapter) {
     return adapter;
   }

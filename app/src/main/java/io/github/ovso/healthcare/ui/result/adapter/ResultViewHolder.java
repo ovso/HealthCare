@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.ovso.healthcare.R;
-import io.github.ovso.healthcare.data.network.model.SearchItem;
+import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseViewHolder;
 
 public class ResultViewHolder extends BaseViewHolder<SearchItem> {
@@ -19,7 +19,6 @@ public class ResultViewHolder extends BaseViewHolder<SearchItem> {
 
   public void bind(SearchItem brand) {
     super.bind(brand);
-    titleTextView.setText(brand.getName());
   }
 
   public static ResultViewHolder create(ViewGroup parent) {

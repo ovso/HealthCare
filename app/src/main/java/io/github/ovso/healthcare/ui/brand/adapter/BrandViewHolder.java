@@ -19,7 +19,7 @@ public class BrandViewHolder extends BaseViewHolder {
 
   public void bind(SearchItem brand) {
     super.bind(brand);
-    titleTextView.setText(brand.getName());
+    //titleTextView.setText(brand.getName());
   }
 
   public static BrandViewHolder create(ViewGroup parent) {
