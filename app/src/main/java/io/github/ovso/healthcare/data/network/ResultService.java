@@ -1,10 +1,13 @@
 package io.github.ovso.healthcare.data.network;
 
-import io.github.ovso.healthcare.data.network.model.SearchItem;
+import io.github.ovso.healthcare.data.network.model.youtube.Search;
 import io.reactivex.Single;
-import java.util.List;
+import java.util.Map;
 import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
 
 public interface ResultService {
-  @GET("car_meta/brands") Single<List<SearchItem>> getBrands();
+  @GET("youtube/v3/search")
+  Single<Search> getResult(@QueryMap Map<String, Object> queryMap);
+
 }

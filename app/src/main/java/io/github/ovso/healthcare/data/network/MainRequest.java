@@ -24,7 +24,7 @@ public class MainRequest extends BaseRequest<MainService> {
   }
 
   @Override protected String getBaseUrl() {
-    return ApiEndPoint.CARS.getUrl();
+    return null;
   }
 
   public Single<List<Car>> getCars(int page) {

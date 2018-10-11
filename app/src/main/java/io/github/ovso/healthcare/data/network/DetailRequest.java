@@ -21,7 +21,7 @@ public class DetailRequest extends BaseRequest<DetailService> {
   }
 
   @Override protected String getBaseUrl() {
-    return ApiEndPoint.CARS.getUrl();
+    return null;
   }
 
   public Single<CarDetail> getCarDetail(int carId) {

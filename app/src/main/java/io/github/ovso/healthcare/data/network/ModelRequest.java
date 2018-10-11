@@ -21,7 +21,7 @@ public class ModelRequest extends BaseRequest<ModelService> {
   }
 
   @Override protected String getBaseUrl() {
-    return ApiEndPoint.CARS.getUrl();
+    return null;
   }
 
   public Single<ModelGroupDetail> getModel(int id) {

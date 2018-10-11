@@ -2,7 +2,6 @@ package io.github.ovso.healthcare.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +16,7 @@ import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
+import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
@@ -64,8 +64,9 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     adapterView.refresh();
   }
 
-  @Override public void navigateToDetail(Disease disease) {
+  @Override public void navigateToDetail(String name) {
     Intent intent = new Intent(this, ResultActivity.class);
+    intent.putExtra(KeyName.DISEASE_NAME, name);
     startActivity(intent);
   }
 

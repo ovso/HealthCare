@@ -17,12 +17,15 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
   @Inject BaseAdapterView adapterView;
   @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
 
-
   @Override protected int getLayoutResID() {
     return R.layout.activity_result;
   }
 
   @Override protected void onCreated(@Nullable Bundle savedInstanceState) {
-    presenter.onCreate();
+    presenter.onCreate(getIntent());
+  }
+
+  @Override public boolean isTitle() {
+    return true;
   }
 }

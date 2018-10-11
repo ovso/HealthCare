@@ -21,7 +21,7 @@ public class ModelGroupRequest extends BaseRequest<ModelGroupService> {
   }
 
   @Override protected String getBaseUrl() {
-    return ApiEndPoint.CARS.getUrl();
+    return null;
   }
 
   public Single<BrandGroup> getBrandDetail(int id) {

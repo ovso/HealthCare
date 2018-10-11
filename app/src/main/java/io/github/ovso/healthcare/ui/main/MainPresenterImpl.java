@@ -53,9 +53,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onListItemClick(Disease disease, int itemPosition) {
-    Timber.d("data = " + disease);
-    //view.navigateToDetail(data);
-    view.navigateToDetail(disease);
+    view.navigateToDetail(disease.getName());
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

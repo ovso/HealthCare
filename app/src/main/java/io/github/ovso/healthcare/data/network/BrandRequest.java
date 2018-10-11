@@ -22,7 +22,7 @@ public class BrandRequest extends BaseRequest<BrandService> {
   }
 
   @Override protected String getBaseUrl() {
-    return ApiEndPoint.CARS.getUrl();
+    return null;
   }
 
   public Single<List<SearchItem>> getBrands() {
