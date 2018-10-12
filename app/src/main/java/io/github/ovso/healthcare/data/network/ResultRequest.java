@@ -26,7 +26,7 @@ public class ResultRequest extends BaseRequest<ResultService> {
   }
 
   @Override protected String getBaseUrl() {
-    return EndPoint.RESULT;
+    return EndPoint.RESULT.getUrl();
   }
 
   public Single<Search> getResult(String q, String pageToken) {
@@ -35,15 +35,15 @@ public class ResultRequest extends BaseRequest<ResultService> {
 
   private Map<String, Object> createQueryMap(String q, String pageToken) {
     Map<String, Object> queryMap = new HashMap<>();
-    queryMap.put(KeyName.Q, q);
-    queryMap.put(KeyName.MAX_RESULTS, 50);
-    queryMap.put(KeyName.ORDER, "date");
-    queryMap.put(KeyName.TYPE, "video");
-    queryMap.put(KeyName.VIDEO_SYNDICATED, "false");
-    queryMap.put(KeyName.KEY, Security.KEY.getValue());
-    queryMap.put(KeyName.PART, "snippet");
+    queryMap.put(KeyName.Q.getValue(), q);
+    queryMap.put(KeyName.MAX_RESULTS.getValue(), 50);
+    queryMap.put(KeyName.ORDER.getValue(), "viewCount");
+    queryMap.put(KeyName.TYPE.getValue(), "video");
+    queryMap.put(KeyName.VIDEO_SYNDICATED.getValue(), "any");
+    queryMap.put(KeyName.KEY.getValue(), Security.KEY.getValue());
+    queryMap.put(KeyName.PART.getValue(), "snippet");
     if (!TextUtils.isEmpty(pageToken)) {
-      queryMap.put(KeyName.PAGE_TOKEN, pageToken);
+      queryMap.put(KeyName.PAGE_TOKEN.getValue(), pageToken);
     }
     return queryMap;
   }

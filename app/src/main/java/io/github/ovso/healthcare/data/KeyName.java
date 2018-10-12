@@ -1,18 +1,19 @@
 package io.github.ovso.healthcare.data;
 
-public class KeyName {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-  public static final String Q = "q";
-  public static final String MAX_RESULTS = "max_results";
-  public static final String ORDER = "order";
-  public static final String TYPE = "type";
-  public static final String VIDEO_SYNDICATED = "video_syndicated";
-  public static final String KEY = "key";
-  public static final String PART = "part";
-  public static final String PAGE_TOKEN = "page_token";
+@Getter @AllArgsConstructor public enum KeyName {
+  POSITION("position"),
+  PAGE_TOKEN("pageToken"),
+  Q("q"),
+  MAX_RESULTS("maxResults"),
+  ORDER("order"),
+  TYPE("type"),
+  VIDEO_SYNDICATED("videoSyndicated"),
+  KEY("key"),
+  PART("part"),
+  DISEASE_NAME("disease_name");
+  private String value;
 
-  private KeyName() {
-  }
-
-  public final static String DISEASE_NAME = "disease_name";
 }

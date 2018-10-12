@@ -18,7 +18,7 @@ public interface MainPresenter {
 
     void refresh();
 
-    void navigateToDetail(String name);
+    void navigateToDetail(Disease disease);
 
     void setupToolbar();
 

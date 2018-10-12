@@ -53,7 +53,7 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onListItemClick(Disease disease, int itemPosition) {
-    view.navigateToDetail(disease.getName());
+    view.navigateToDetail(disease);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {
@@ -79,7 +79,7 @@ public class MainPresenterImpl implements MainPresenter {
           }, throwable -> Timber.d(throwable));
       compositeDisposable.add(subscribe);
     } else {
-      Observable.fromCallable(() -> {
+      Disposable subscribe = Observable.fromCallable(() -> {
         String json = resourceProvider.assetsToJson(fileName);
         return Disease.fromJson(json);
       }).subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe(items -> {
@@ -87,6 +87,7 @@ public class MainPresenterImpl implements MainPresenter {
         adapterDataModel.addAll(items);
         view.refresh();
       });
+      compositeDisposable.add(subscribe);
     }
   }
 
@@ -97,6 +98,5 @@ public class MainPresenterImpl implements MainPresenter {
       compositeDisposable.clear();
       view.finish();
     }
-
   }
 }

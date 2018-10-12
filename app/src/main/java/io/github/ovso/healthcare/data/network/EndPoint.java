@@ -1,6 +1,10 @@
 package io.github.ovso.healthcare.data.network;
 
-public final class EndPoint {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-  public static final String RESULT = "https://www.googleapis.com";
+@Getter @AllArgsConstructor public enum EndPoint {
+
+  RESULT("https://www.googleapis.com");
+  private String url;
 }

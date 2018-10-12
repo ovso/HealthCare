@@ -2,6 +2,7 @@ package io.github.ovso.healthcare.ui.result;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
@@ -27,5 +28,14 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public boolean isTitle() {
     return true;
+  }
+
+  @Override public void refresh() {
+    adapterView.refresh();
+  }
+
+  @Override public void setupRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    recyclerView.setAdapter(adapter);
   }
 }

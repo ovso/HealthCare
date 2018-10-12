@@ -8,5 +8,8 @@ public interface ResultPresenter {
 
   interface View {
 
+    void refresh();
+
+    void setupRecyclerView();
   }
 }

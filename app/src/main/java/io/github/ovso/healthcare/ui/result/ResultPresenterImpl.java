@@ -36,13 +36,16 @@ public class ResultPresenterImpl implements ResultPresenter {
   }
 
   @Override public void onCreate(@NonNull Intent intent) {
-    String name = intent.getStringExtra(KeyName.DISEASE_NAME);
+    view.setupRecyclerView();
+    String name = intent.getStringExtra(KeyName.DISEASE_NAME.getValue());
     if (!ObjectUtils.isEmpty(name)) {
       Disposable subscribe = request.getResult(name, pageToken)
           .subscribeOn(schedulers.io())
           .observeOn(schedulers.ui())
           .subscribe(search -> {
             Timber.d("search= " + search.getItems().size());
+            adapterDataModel.addAll(search.getItems());
+            view.refresh();
           }, throwable -> {
           });
       compositeDisposable.add(subscribe);
