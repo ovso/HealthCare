@@ -33,6 +33,6 @@ public class ResultViewHolder extends BaseViewHolder<SearchItem> {
   }
 
   @OnClick(R.id.root_view) void onItemClick() {
-    onRecyclerViewItemClickListener.onListItemClick(itemView, data, itemPosition);
+    onRecyclerViewItemClickListener.onItemClick(data);
   }
 }

@@ -24,7 +24,6 @@ public class MainViewHolder extends BaseViewHolder {
 
   public void bind(Disease disease) {
     super.bind(disease);
-    Context context = itemView.getContext();
     codeTextView.setText(disease.getCode());
     diseaseTextView.setText(disease.getName());
   }
@@ -36,6 +35,6 @@ public class MainViewHolder extends BaseViewHolder {
   }
 
   @OnClick(R.id.root_view) void onItemClick() {
-    onRecyclerViewItemClickListener.onListItemClick(itemView, data, itemPosition);
+    onRecyclerViewItemClickListener.onItemClick(data);
   }
 }

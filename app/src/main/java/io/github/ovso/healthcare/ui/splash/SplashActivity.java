@@ -33,4 +33,11 @@ public class SplashActivity extends AppCompatActivity {
       subscribe.dispose();
     }
   }
+
+  @Override protected void onDestroy() {
+    if (subscribe != null) {
+      subscribe.dispose();
+    }
+    super.onDestroy();
+  }
 }

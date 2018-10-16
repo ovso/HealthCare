@@ -1,5 +1,6 @@
 package io.github.ovso.healthcare.ui.main.adapter;
 
+import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
@@ -16,17 +17,17 @@ public class MainAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
   @Setter private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
   private List<Disease> items = new ArrayList<>();
 
-  @Override public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return MainViewHolder.create(parent);
+  @NonNull @Override
+  public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    return MainViewHolder.create(viewGroup);
   }
 
-  @Override
-  public void onBindViewHolder(BaseViewHolder viewHolder, int position) {
-    if (viewHolder instanceof MainViewHolder) {
-      MainViewHolder holder = (MainViewHolder) viewHolder;
-      holder.bind(items.get(position));
-      holder.setOnRecyclerViewItemClickListener(onRecyclerViewItemClickListener);
-      holder.setItemPosition(position);
+  @Override public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int position) {
+    if (baseViewHolder instanceof MainViewHolder) {
+      MainViewHolder viewHolder = (MainViewHolder) baseViewHolder;
+      viewHolder.bind(items.get(position));
+      viewHolder.setOnRecyclerViewItemClickListener(onRecyclerViewItemClickListener);
+      viewHolder.setItemPosition(position);
     }
   }
 

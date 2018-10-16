@@ -52,8 +52,12 @@ public class MainPresenterImpl implements MainPresenter {
     compositeDisposable.add(subscribe);
   }
 
-  @Override public void onListItemClick(Disease disease, int itemPosition) {
+  @Override public void onItemClick(Disease disease) {
     view.navigateToDetail(disease);
+  }
+
+  @Override public void onItemLikeClick(Disease item) {
+    Timber.d("onItemLikeClick = " + item);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

@@ -37,9 +37,9 @@ public class ResultRequest extends BaseRequest<ResultService> {
     Map<String, Object> queryMap = new HashMap<>();
     queryMap.put(KeyName.Q.getValue(), q);
     queryMap.put(KeyName.MAX_RESULTS.getValue(), 50);
-    queryMap.put(KeyName.ORDER.getValue(), "viewCount");
+    queryMap.put(KeyName.ORDER.getValue(), "relevance");
     queryMap.put(KeyName.TYPE.getValue(), "video");
-    queryMap.put(KeyName.VIDEO_SYNDICATED.getValue(), "any");
+    queryMap.put(KeyName.VIDEO_TYPE.getValue(), "any");
     queryMap.put(KeyName.KEY.getValue(), Security.KEY.getValue());
     queryMap.put(KeyName.PART.getValue(), "snippet");
     if (!TextUtils.isEmpty(pageToken)) {

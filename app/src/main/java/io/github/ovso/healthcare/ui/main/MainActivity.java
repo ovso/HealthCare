@@ -11,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
@@ -107,8 +106,12 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     drawer.closeDrawer(GravityCompat.START);
   }
 
-  @Override public void onListItemClick(View view, Disease disease, int itemPosition) {
-    presenter.onListItemClick(disease, itemPosition);
+  @Override public void onItemClick(Disease disease) {
+    presenter.onItemClick(disease);
+  }
+
+  @Override public void onItemLikeClick(Disease item) {
+    presenter.onItemLikeClick(item);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

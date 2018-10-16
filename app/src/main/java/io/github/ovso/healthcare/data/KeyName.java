@@ -11,6 +11,7 @@ import lombok.Getter;
   ORDER("order"),
   TYPE("type"),
   VIDEO_SYNDICATED("videoSyndicated"),
+  VIDEO_TYPE("videoType"),
   KEY("key"),
   PART("part"),
   DISEASE_NAME("disease_name");
