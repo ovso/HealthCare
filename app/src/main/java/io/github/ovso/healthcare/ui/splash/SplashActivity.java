@@ -23,8 +23,8 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   private void navigateToMain() {
-    startActivity(new Intent(getApplicationContext(), MainActivity.class));
     finish();
+    startActivity(new Intent(getApplicationContext(), MainActivity.class));
   }
 
   @Override public void onBackPressed() {

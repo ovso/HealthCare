@@ -1,10 +1,11 @@
 package io.github.ovso.healthcare.ui.main;
 
+import android.arch.lifecycle.LifecycleObserver;
 import io.github.ovso.healthcare.data.network.model.Disease;
 
-public interface MainPresenter {
+public interface MainPresenter extends LifecycleObserver {
 
-  void onCreated();
+  void onCreate();
 
   void onItemClick(Disease disease);
 
@@ -29,5 +30,9 @@ public interface MainPresenter {
     void closeDrawer();
 
     void finish();
+
+    void setTitle(String title);
+
+    void showNotiDialog();
   }
 }

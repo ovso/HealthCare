@@ -1,6 +1,9 @@
 package io.github.ovso.healthcare.ui.main;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.text.TextUtils;
+import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ResourceProvider;
@@ -29,8 +32,10 @@ public class MainPresenterImpl implements MainPresenter {
     fileName = "disease.json";
   }
 
-  @Override public void onCreated() {
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+  @Override public void onCreate() {
     view.setupToolbar();
+    view.setTitle(resourceProvider.getString(R.string.app_name));
     view.setupSearchLiveo();
     view.setupRecyclerView();
 
@@ -58,6 +63,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onItemLikeClick(Disease item) {
     Timber.d("onItemLikeClick = " + item);
+    view.showNotiDialog();
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

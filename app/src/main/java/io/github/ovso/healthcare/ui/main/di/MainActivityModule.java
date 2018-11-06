@@ -5,6 +5,7 @@ import dagger.Provides;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
+import io.github.ovso.healthcare.ui.main.MainActivity;
 import io.github.ovso.healthcare.ui.main.MainPresenter;
 import io.github.ovso.healthcare.ui.main.MainPresenterImpl;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
@@ -16,8 +17,11 @@ import javax.inject.Singleton;
 
   @Provides MainPresenter provideMainPresenter(MainPresenter.View view,
       ResourceProvider resourceProvider, SchedulersFacade schedulersFacade,
-      BaseAdapterDataModel<Disease> adapterDataModel) {
-    return new MainPresenterImpl(view, resourceProvider, schedulersFacade, adapterDataModel);
+      BaseAdapterDataModel<Disease> adapterDataModel, MainActivity activity) {
+    MainPresenter presenter =
+        new MainPresenterImpl(view, resourceProvider, schedulersFacade, adapterDataModel);
+    activity.getLifecycle().addObserver(presenter);
+    return presenter;
   }
 
   @Singleton @Provides MainAdapter provideMainAdapter() {

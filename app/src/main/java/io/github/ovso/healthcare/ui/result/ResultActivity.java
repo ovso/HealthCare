@@ -1,7 +1,5 @@
 package io.github.ovso.healthcare.ui.result;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
@@ -22,10 +20,6 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
     return R.layout.activity_result;
   }
 
-  @Override protected void onCreated(@Nullable Bundle savedInstanceState) {
-    presenter.onCreate(getIntent());
-  }
-
   @Override public boolean isTitle() {
     return true;
   }
@@ -37,5 +31,13 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
   @Override public void setupRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
+  }
+
+  @Override public void setupActionBar() {
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override public void setTitle(String title) {
+    super.setTitle(title);
   }
 }

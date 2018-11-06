@@ -1,15 +1,19 @@
 package io.github.ovso.healthcare.ui.result;
 
-import android.content.Intent;
+import android.arch.lifecycle.LifecycleObserver;
 
-public interface ResultPresenter {
+public interface ResultPresenter extends LifecycleObserver {
 
-  void onCreate(Intent intent);
+  void onCreate();
 
   interface View {
 
     void refresh();
 
     void setupRecyclerView();
+
+    void setupActionBar();
+
+    void setTitle(String title);
   }
 }

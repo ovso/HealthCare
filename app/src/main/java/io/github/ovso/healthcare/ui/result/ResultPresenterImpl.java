@@ -1,7 +1,8 @@
 package io.github.ovso.healthcare.ui.result;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.ResultRequest;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
@@ -22,24 +23,28 @@ public class ResultPresenterImpl implements ResultPresenter {
   private BaseAdapterDataModel<SearchItem> adapterDataModel;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private String pageToken;
+  private String diseaseName;
 
   public ResultPresenterImpl(
       ResultPresenter.View $view,
       ResourceProvider $resourceProvider,
       ResultRequest $request, SchedulersFacade $scheduler,
-      BaseAdapterDataModel<SearchItem> $adapterDataModel) {
+      BaseAdapterDataModel<SearchItem> $adapterDataModel, Intent $intent) {
     view = $view;
     resourceProvider = $resourceProvider;
     request = $request;
     schedulers = $scheduler;
     adapterDataModel = $adapterDataModel;
+    diseaseName = $intent.getStringExtra(KeyName.DISEASE_NAME.getValue());
   }
 
-  @Override public void onCreate(@NonNull Intent intent) {
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+  @Override public void onCreate() {
+    view.setupActionBar();
+    view.setTitle(diseaseName);
     view.setupRecyclerView();
-    String name = intent.getStringExtra(KeyName.DISEASE_NAME.getValue());
-    if (!ObjectUtils.isEmpty(name)) {
-      Disposable subscribe = request.getResult(name, pageToken)
+    if (!ObjectUtils.isEmpty(diseaseName)) {
+      Disposable subscribe = request.getResult(diseaseName, pageToken)
           .subscribeOn(schedulers.io())
           .observeOn(schedulers.ui())
           .subscribe(search -> {

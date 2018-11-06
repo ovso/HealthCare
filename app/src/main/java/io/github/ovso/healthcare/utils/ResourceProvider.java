@@ -23,12 +23,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import com.google.gson.Gson;
-import java.io.IOException;
 import java.io.InputStream;
 import javax.inject.Inject;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 public class ResourceProvider {
 

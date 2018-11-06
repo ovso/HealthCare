@@ -1,5 +1,6 @@
 package io.github.ovso.healthcare.ui.main;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,14 +40,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_main;
-  }
-
-  @Override protected void onCreated(@Nullable Bundle savedInstanceState) {
-    presenter.onCreated();
-  }
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
   }
 
   @Override public void setupRecyclerView() {
@@ -96,6 +90,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
         });
   }
 
+  @Override public boolean isTitle() {
+    return true;
+  }
+
   @Override public void setupSearchLiveo() {
     searchLiveo.with(this).build();
     searchLiveo.showVoice();
@@ -104,6 +102,16 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
 
   @Override public void closeDrawer() {
     drawer.closeDrawer(GravityCompat.START);
+  }
+
+  @Override public void setTitle(String title) {
+    super.setTitle(title);
+  }
+
+  @Override public void showNotiDialog() {
+    new AlertDialog.Builder(this).setMessage(R.string.comming_soon_favorite)
+        .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+        .show();
   }
 
   @Override public void onItemClick(Disease disease) {
