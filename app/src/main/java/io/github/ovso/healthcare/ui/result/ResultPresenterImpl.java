@@ -56,4 +56,13 @@ public class ResultPresenterImpl implements ResultPresenter {
       compositeDisposable.add(subscribe);
     }
   }
+
+  @Override public boolean onOptionsItemSelected(int itemId) {
+    if (itemId != android.R.id.home) {
+      view.navigateToWeb(itemId, diseaseName);
+    } else {
+      view.finish();
+    }
+    return true;
+  }
 }
