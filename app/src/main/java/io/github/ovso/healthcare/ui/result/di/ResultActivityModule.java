@@ -6,6 +6,7 @@ import io.github.ovso.healthcare.data.network.ResultRequest;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
+import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
 import io.github.ovso.healthcare.ui.result.ResultPresenter;
 import io.github.ovso.healthcare.ui.result.ResultPresenterImpl;
@@ -27,8 +28,8 @@ import javax.inject.Singleton;
     return presenter;
   }
 
-  @Singleton @Provides ResultAdapter provideResultAdapter() {
-    return new ResultAdapter();
+  @Singleton @Provides ResultAdapter provideResultAdapter(BaseOnItemClickListener<SearchItem> l) {
+    return new ResultAdapter.Builder().setClickListener(l).build();
   }
 
   @Provides BaseAdapterDataModel<SearchItem> provideAdapterDataModel(ResultAdapter adapter) {

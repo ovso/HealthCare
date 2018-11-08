@@ -27,7 +27,6 @@ public class MainAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
       MainViewHolder viewHolder = (MainViewHolder) baseViewHolder;
       viewHolder.bind(items.get(position));
       viewHolder.setOnRecyclerViewItemClickListener(onRecyclerViewItemClickListener);
-      viewHolder.setItemPosition(position);
     }
   }
 

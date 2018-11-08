@@ -65,4 +65,8 @@ public class ResultPresenterImpl implements ResultPresenter {
     }
     return true;
   }
+
+  @Override public void onItemClick(SearchItem item) {
+    view.navigateToVideo(item);
+  }
 }

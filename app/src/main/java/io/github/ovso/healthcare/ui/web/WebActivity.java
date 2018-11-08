@@ -27,6 +27,7 @@ public class WebActivity extends AppCompatActivity {
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    overridePendingTransition(R.anim.slide_up, R.anim.no_change);
     setContentView(R.layout.activity_web);
     ButterKnife.bind(this);
 
@@ -40,6 +41,7 @@ public class WebActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     //getSupportActionBar().setDisplayShowTitleEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
   }
 
   private void load() {
@@ -75,6 +77,11 @@ public class WebActivity extends AppCompatActivity {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     finish();
     return true;
+  }
+
+  @Override public void finish() {
+    super.finish();
+    overridePendingTransition(R.anim.no_change, R.anim.slide_down);
   }
 
   private class MyWebViewClient extends WebViewClient {

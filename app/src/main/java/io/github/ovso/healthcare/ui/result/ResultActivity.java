@@ -6,14 +6,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
+import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
+import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.adapter.ResultAdapter;
+import io.github.ovso.healthcare.ui.video.VideoActivity;
 import io.github.ovso.healthcare.ui.web.WebActivity;
 import javax.inject.Inject;
 
-public class ResultActivity extends BaseActivity implements ResultPresenter.View {
+public class ResultActivity extends BaseActivity implements ResultPresenter.View,
+    BaseOnItemClickListener<SearchItem> {
 
   @Inject ResultPresenter presenter;
   @Inject ResultAdapter adapter;
@@ -52,6 +56,12 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
     startActivity(intent);
   }
 
+  @Override public void navigateToVideo(SearchItem item) {
+    Intent intent = new Intent(getApplicationContext(), VideoActivity.class);
+    intent.putExtra("video_id", item.getId().getVideoId());
+    startActivity(intent);
+  }
+
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_result, menu);
     return super.onCreateOptionsMenu(menu);
@@ -59,5 +69,9 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     return presenter.onOptionsItemSelected(item.getItemId());
+  }
+
+  @Override public void onItemClick(SearchItem item) {
+    presenter.onItemClick(item);
   }
 }

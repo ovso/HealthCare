@@ -39,6 +39,14 @@
         android:name=".ui.web.WebActivity"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".ui.video.VideoActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:screenOrientation="fullSensor"
+        android:theme="@style/AppTheme.NoActionBar"
+        >
+    </activity>
+    <!--android:theme="@android:style/Theme.Black.NoTitleBar"-->
 
     <meta-data
         android:name="io.fabric.ApiKey"

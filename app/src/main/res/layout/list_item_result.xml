@@ -11,7 +11,7 @@
     app:cardCornerRadius="10dp"
     >
   <android.support.constraint.ConstraintLayout
-      android:id="@id/root_view"
+      android:id="@+id/container"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       >
@@ -70,7 +70,7 @@
         android:layout_height="0dp"
         android:background="?android:selectableItemBackground"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/root_view"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
