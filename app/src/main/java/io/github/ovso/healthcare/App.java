@@ -15,9 +15,9 @@ public class App extends DaggerApplication {
 
   @Override public void onCreate() {
     super.onCreate();
-    Fabric.with(this, new Crashlytics());
     instance = this;
     AppInitUtils.timer();
+    AppInitUtils.crash(this);
   }
 
   @Override protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
