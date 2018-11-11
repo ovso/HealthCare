@@ -1,18 +1,21 @@
 package io.github.ovso.healthcare.ui.web;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,6 +27,8 @@ public class WebActivity extends AppCompatActivity {
   @BindView(R.id.toolbar) Toolbar toolbar;
   @BindView(R.id.web_view) WebView webView;
   @BindView(R.id.progress_bar) ContentLoadingProgressBar progressBar;
+  @BindView(R.id.web_back_button) ImageButton webBackButton;
+  @BindView(R.id.web_forward_button) ImageButton webForwardButton;
   private int act_id;
   private String disease;
 
@@ -48,6 +53,7 @@ public class WebActivity extends AppCompatActivity {
 
   private void load() {
     webView.loadUrl(Portal.toUrl(act_id, disease));
+    updateWebNaviButton();
   }
 
   private void setupData() {
@@ -95,7 +101,30 @@ public class WebActivity extends AppCompatActivity {
 
     @Override public void onPageFinished(WebView view, String url) {
       progressBar.hide();
+      updateWebNaviButton();
       super.onPageFinished(view, url);
+    }
+  }
+
+  private void updateWebNaviButton() {
+    if (webView.canGoBack()) {
+      int color = ContextCompat.getColor(this, android.R.color.black);
+      webBackButton.setImageTintList(ColorStateList.valueOf(color));
+      webBackButton.setClickable(true);
+    } else {
+      int color = ContextCompat.getColor(this, android.R.color.darker_gray);
+      webBackButton.setImageTintList(ColorStateList.valueOf(color));
+      webBackButton.setClickable(false);
+    }
+
+    if (webView.canGoForward()) {
+      int color = ContextCompat.getColor(this, android.R.color.black);
+      webForwardButton.setImageTintList(ColorStateList.valueOf(color));
+      webForwardButton.setClickable(true);
+    } else {
+      int color = ContextCompat.getColor(this, android.R.color.darker_gray);
+      webForwardButton.setImageTintList(ColorStateList.valueOf(color));
+      webForwardButton.setClickable(false);
     }
   }
 
@@ -120,11 +149,17 @@ public class WebActivity extends AppCompatActivity {
 
   @OnClick(R.id.web_share_button)
   void onWebSharClick() {
-
+    Intent sendIntent = new Intent();
+    sendIntent.setAction(Intent.ACTION_SEND);
+    sendIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+    sendIntent.setType("text/plain");
+    startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.share)));
   }
 
   @OnClick(R.id.web_browser_button)
   void onWebBrowClick() {
-
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(webView.getUrl()));
+    startActivity(intent);
   }
 }
