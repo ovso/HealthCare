@@ -8,12 +8,14 @@ import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.Portal;
 
@@ -95,5 +97,34 @@ public class WebActivity extends AppCompatActivity {
       progressBar.hide();
       super.onPageFinished(view, url);
     }
+  }
+
+  @OnClick(R.id.web_back_button)
+  void onWebBackClick() {
+    if (webView.canGoBack()) {
+      webView.goBack();
+    }
+  }
+
+  @OnClick(R.id.web_forward_button)
+  void onWebForwClick() {
+    if (webView.canGoForward()) {
+      webView.goForward();
+    }
+  }
+
+  @OnClick(R.id.web_refresh_button)
+  void onWebRefrClick() {
+    webView.reload();
+  }
+
+  @OnClick(R.id.web_share_button)
+  void onWebSharClick() {
+
+  }
+
+  @OnClick(R.id.web_browser_button)
+  void onWebBrowClick() {
+
   }
 }
