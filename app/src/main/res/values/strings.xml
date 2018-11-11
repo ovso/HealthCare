@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">몸을 돌보다</string>
   <string name="action_settings">Settings</string>
@@ -5,9 +6,6 @@
   <string name="km">km</string>
   <string name="distance">만</string>
   <string name="price">만원</string>
-  <string name="brand_select">브랜드 선택</string>
-  <string name="model_group_select">차종 선택</string>
-  <string name="model_select">모델 선택</string>
   <string name="call">연락하기</string>
   <string name="help">도움말</string>
   <string name="opensource_license">오픈소스 라이선스</string>

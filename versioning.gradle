@@ -39,4 +39,7 @@ ext {
   like_button_version = '0.2.3'
 
   searchliveo_version = '1.1.2'
+
+  // aac
+  aac_room_version = '2.0.0'
 }

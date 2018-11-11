@@ -1,17 +1,17 @@
 buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
+  repositories {
+    maven { url 'https://maven.fabric.io/public' }
+  }
 
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
+  dependencies {
+    classpath 'io.fabric.tools:gradle:1.+'
+  }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
+  maven { url 'https://maven.fabric.io/public' }
 }
 
 
@@ -45,6 +45,10 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation files('libs/YouTubeAndroidPlayerApi.jar')
 
+  testImplementation 'junit:junit:4.12'
+//  androidTestImplementation 'androidx.test:runner:1.1.0'
+//  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
   implementation "com.android.support:appcompat-v7:$support_version"
   implementation "com.android.support:support-v4:$support_version"
   implementation "com.android.support:support-media-compat:$support_version"
@@ -52,6 +56,13 @@ dependencies {
   implementation "com.android.support:customtabs:$support_version"
   implementation "com.android.support.constraint:constraint-layout:$constraint_version"
   implementation "com.android.support:cardview-v7:$support_version"
+
+  // androidx
+//  implementation 'androidx.appcompat:appcompat:1.0.0'
+//  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//  implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+//  implementation 'com.google.android.material:material:1.0.0'
+
 
   // dagger
   implementation "com.google.dagger:dagger:$rootProject.dagger_version"
@@ -96,9 +107,11 @@ dependencies {
   implementation "com.github.rudsonlive:searchliveo:$searchliveo_version"
   implementation "com.github.fondesa:recycler-view-divider:$recyclerview_divider_version"
 
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+  // aac
+//  implementation "androidx.room:room-runtime:$aac_room_version"
+//  implementation "androidx.room:room-compiler:$aac_room_version"
+//  implementation "androidx.room:room-rxjava2:$aac_room_version"
+
 }
 
 apply plugin: 'com.google.gms.google-services'
