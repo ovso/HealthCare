@@ -1,7 +1,5 @@
 package io.github.ovso.healthcare.ui.main;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.OnLifecycleEvent;
 import android.text.TextUtils;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.Disease;
@@ -32,7 +30,6 @@ public class MainPresenterImpl implements MainPresenter {
     fileName = "disease.json";
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   @Override public void onCreate() {
     view.setupToolbar();
     view.setTitle(resourceProvider.getString(R.string.app_name));

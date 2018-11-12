@@ -1,7 +1,5 @@
 package io.github.ovso.healthcare.ui.result;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.ResultRequest;
@@ -38,7 +36,6 @@ public class ResultPresenterImpl implements ResultPresenter {
     diseaseName = $intent.getStringExtra(KeyName.DISEASE_NAME.getValue());
   }
 
-  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   @Override public void onCreate() {
     view.setupActionBar();
     view.setTitle(diseaseName);

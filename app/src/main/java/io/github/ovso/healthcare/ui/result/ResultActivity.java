@@ -1,9 +1,9 @@
 package io.github.ovso.healthcare.ui.result;
 
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;

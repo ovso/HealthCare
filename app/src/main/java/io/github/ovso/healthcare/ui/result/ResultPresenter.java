@@ -1,10 +1,12 @@
 package io.github.ovso.healthcare.ui.result;
 
-import android.arch.lifecycle.LifecycleObserver;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 
 public interface ResultPresenter extends LifecycleObserver {
-
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   void onCreate();
 
   boolean onOptionsItemSelected(int itemId);

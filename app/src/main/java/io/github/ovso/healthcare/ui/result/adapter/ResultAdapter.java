@@ -1,7 +1,7 @@
 package io.github.ovso.healthcare.ui.result.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.IBuilder;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;

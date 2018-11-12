@@ -1,7 +1,7 @@
 package io.github.ovso.healthcare.ui.base.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.ButterKnife;
 
 public class BaseViewHolder<T> extends RecyclerView.ViewHolder {

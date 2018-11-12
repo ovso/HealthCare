@@ -1,7 +1,7 @@
 package io.github.ovso.healthcare.ui.main.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
