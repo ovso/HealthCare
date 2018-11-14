@@ -13,6 +13,10 @@ public interface ResultPresenter extends LifecycleObserver {
 
   void onItemClick(SearchItem item);
 
+  void onSwipeRefresh();
+
+  void onLoadMore();
+
   interface View {
 
     void refresh();
@@ -28,5 +32,13 @@ public interface ResultPresenter extends LifecycleObserver {
     void finish();
 
     void navigateToVideo(SearchItem item);
+
+    void setupSwipeRefresh();
+
+    void showLoading();
+
+    void hideLoading();
+
+    void setLoaded();
   }
 }

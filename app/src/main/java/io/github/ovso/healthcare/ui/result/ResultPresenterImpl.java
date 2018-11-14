@@ -3,11 +3,13 @@ package io.github.ovso.healthcare.ui.result;
 import android.content.Intent;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.ResultRequest;
+import io.github.ovso.healthcare.data.network.model.youtube.Search;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ObjectUtils;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
+import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
@@ -20,7 +22,7 @@ public class ResultPresenterImpl implements ResultPresenter {
   private SchedulersFacade schedulers;
   private BaseAdapterDataModel<SearchItem> adapterDataModel;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
-  private String pageToken;
+  private String nextPageToken;
   private String diseaseName;
 
   public ResultPresenterImpl(
@@ -40,17 +42,37 @@ public class ResultPresenterImpl implements ResultPresenter {
     view.setupActionBar();
     view.setTitle(diseaseName);
     view.setupRecyclerView();
+    view.setupSwipeRefresh();
+
+    reqVideo();
+  }
+
+  private void reqVideo() {
+    view.showLoading();
     if (!ObjectUtils.isEmpty(diseaseName)) {
-      Disposable subscribe = request.getResult(diseaseName, pageToken)
+      request.getResult(diseaseName, nextPageToken)
           .subscribeOn(schedulers.io())
           .observeOn(schedulers.ui())
-          .subscribe(search -> {
-            Timber.d("search= " + search.getItems().size());
-            adapterDataModel.addAll(search.getItems());
-            view.refresh();
-          }, throwable -> {
+          .subscribe(new SingleObserver<Search>() {
+            @Override public void onSubscribe(Disposable d) {
+              compositeDisposable.add(d);
+            }
+
+            @Override public void onSuccess(Search search) {
+              nextPageToken = search.getNextPageToken();
+              adapterDataModel.addAll(search.getItems());
+              view.refresh();
+              view.setLoaded();
+              view.hideLoading();
+            }
+
+            @Override public void onError(Throwable e) {
+              Timber.d(e);
+              view.hideLoading();
+            }
           });
-      compositeDisposable.add(subscribe);
+    } else {
+      view.hideLoading();
     }
   }
 
@@ -65,5 +87,21 @@ public class ResultPresenterImpl implements ResultPresenter {
 
   @Override public void onItemClick(SearchItem item) {
     view.navigateToVideo(item);
+  }
+
+  private void clearObject() {
+    nextPageToken = null;
+    adapterDataModel.clear();
+  }
+
+  @Override public void onSwipeRefresh() {
+    clearObject();
+    reqVideo();
+  }
+
+  @Override public void onLoadMore() {
+    Timber.d("onLoadMore");
+    Timber.d("nextPageToken = " + nextPageToken);
+    reqVideo();
   }
 }

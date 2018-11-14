@@ -14,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public abstract class BaseRequest<T> {
   public final static int TIMEOUT_SECONDS = 7;
+
   public T getApi() {
     return createRetrofit().create(getApiClass());
   }
@@ -38,24 +39,26 @@ public abstract class BaseRequest<T> {
     OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     httpClient.readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
     httpClient.connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
-    httpClient.addInterceptor(new Interceptor() {
-      @Override
-      public Response intercept(Chain chain) throws IOException {
-        Request original = chain.request();
-        Request.Builder requestBuilder =
-            original.newBuilder()
-                .header("Content-Type", "plain/text")
-                .headers(BaseRequest.this.createHeaders());
-        Request request = requestBuilder.build();
-        return chain.proceed(request);
-      }
+    httpClient.addInterceptor(chain -> {
+      Request original = chain.request();
+      Request.Builder requestBuilder =
+          original.newBuilder()
+              .header("Content-Type", "plain/text")
+              .headers(BaseRequest.this.createHeaders());
+      Request request = requestBuilder.build();
+      return chain.proceed(request);
     });
     HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    httpClient.addInterceptor(interceptor);
+    if (isInterceptor()) {
+      httpClient.addInterceptor(interceptor);
+    }
     OkHttpClient client = httpClient.build();
     return client;
   }
 
+  protected boolean isInterceptor() {
+    return false;
+  }
 }

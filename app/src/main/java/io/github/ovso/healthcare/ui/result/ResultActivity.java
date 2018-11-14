@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
@@ -11,18 +12,21 @@ import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
 import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
+import io.github.ovso.healthcare.ui.base.listener.EndlessOnScrollListener;
 import io.github.ovso.healthcare.ui.result.adapter.ResultAdapter;
 import io.github.ovso.healthcare.ui.video.VideoActivity;
 import io.github.ovso.healthcare.ui.web.WebActivity;
 import javax.inject.Inject;
 
 public class ResultActivity extends BaseActivity implements ResultPresenter.View,
-    BaseOnItemClickListener<SearchItem> {
+    BaseOnItemClickListener<SearchItem>, EndlessOnScrollListener.OnLoadMoreListener {
+
+  @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefresh;
+  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
 
   @Inject ResultPresenter presenter;
   @Inject ResultAdapter adapter;
   @Inject BaseAdapterView adapterView;
-  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_result;
@@ -38,6 +42,13 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public void setupRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    EndlessOnScrollListener scrollListener =
+        new EndlessOnScrollListener.Builder().setLayoutManager(recyclerView.getLayoutManager())
+            .setOnLoadMoreListener(this)
+            .setVisibleThreshold(15)
+            .build();
+    recyclerView.addOnScrollListener(scrollListener);
+    recyclerView.setTag(scrollListener);
     recyclerView.setAdapter(adapter);
   }
 
@@ -62,6 +73,22 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
     startActivity(intent);
   }
 
+  @Override public void setupSwipeRefresh() {
+    swipeRefresh.setOnRefreshListener(() -> presenter.onSwipeRefresh());
+  }
+
+  @Override public void showLoading() {
+    swipeRefresh.setRefreshing(true);
+  }
+
+  @Override public void hideLoading() {
+    swipeRefresh.setRefreshing(false);
+  }
+
+  @Override public void setLoaded() {
+    ((EndlessOnScrollListener) recyclerView.getTag()).setLoaded();
+  }
+
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_result, menu);
     return super.onCreateOptionsMenu(menu);
@@ -73,5 +100,9 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public void onItemClick(SearchItem item) {
     presenter.onItemClick(item);
+  }
+
+  @Override public void onLoadMore() {
+    presenter.onLoadMore();
   }
 }
