@@ -8,7 +8,6 @@ import io.reactivex.Single;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
-import okhttp3.Headers;
 
 public class ResultRequest extends BaseRequest<ResultService> {
 
@@ -21,8 +20,8 @@ public class ResultRequest extends BaseRequest<ResultService> {
     return ResultService.class;
   }
 
-  @Override protected Headers createHeaders() {
-    return new Headers.Builder().build();
+  @Override protected Map<String, String> createHeaders() {
+    return new HashMap<>();
   }
 
   @Override protected String getBaseUrl() {
