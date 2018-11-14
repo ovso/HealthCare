@@ -110,6 +110,10 @@ dependencies {
   implementation "com.github.jd-alexander:LikeButton:$like_button_version"
   implementation "com.github.rudsonlive:searchliveo:$searchliveo_version"
   implementation "com.github.fondesa:recycler-view-divider:$recyclerview_divider_version"
+
+  // joda time
+  implementation "joda-time:joda-time:$joda_time_version"
+
 }
 
 apply plugin: 'com.google.gms.google-services'
