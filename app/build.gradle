@@ -49,24 +49,24 @@ dependencies {
   androidTestImplementation 'androidx.test:runner:1.1.0'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
-  //  implementation "com.android.support:appcompat-v7:$support_version"
-  //  implementation "com.android.support:support-v4:$support_version"
-  //  implementation "com.android.support:support-media-compat:$support_version"
-  //  implementation "com.android.support:design:$support_version"
-  //  implementation "com.android.support:customtabs:$support_version"
-  //  implementation "com.android.support.constraint:constraint-layout:$constraint_version"
-  //  implementation "com.android.support:cardview-v7:$support_version"
-
   // androidx
   implementation 'androidx.appcompat:appcompat:1.0.0'
   implementation 'androidx.legacy:legacy-support-v4:1.0.0'
   implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
   implementation 'com.google.android.material:material:1.0.0'
 
-  // aac
+  // aac room
   implementation "androidx.room:room-runtime:$aac_room_version"
   annotationProcessor "androidx.room:room-compiler:$aac_room_version"
   implementation "androidx.room:room-rxjava2:$aac_room_version"
+
+  // aac lifecycle
+  implementation "androidx.lifecycle:lifecycle-runtime:$aac_lifecycle_version"
+  implementation "androidx.lifecycle:lifecycle-extensions:$aac_lifecycle_version"
+  implementation "androidx.lifecycle:lifecycle-common-java8:$aac_lifecycle_version"
+  annotationProcessor "androidx.lifecycle:lifecycle-compiler:$aac_lifecycle_version"
+  implementation "androidx.lifecycle:lifecycle-livedata:$aac_lifecycle_version"
+  implementation "androidx.lifecycle:lifecycle-livedata-core:$aac_lifecycle_version"
 
   // dagger
   implementation "com.google.dagger:dagger:$rootProject.dagger_version"
@@ -113,7 +113,6 @@ dependencies {
 
   // joda time
   implementation "joda-time:joda-time:$joda_time_version"
-
 }
 
 apply plugin: 'com.google.gms.google-services'
