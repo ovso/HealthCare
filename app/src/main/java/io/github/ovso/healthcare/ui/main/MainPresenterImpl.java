@@ -2,6 +2,7 @@ package io.github.ovso.healthcare.ui.main;
 
 import android.text.TextUtils;
 import io.github.ovso.healthcare.R;
+import io.github.ovso.healthcare.data.db.AppDatabase;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ResourceProvider;
@@ -20,14 +21,17 @@ public class MainPresenterImpl implements MainPresenter {
   private SchedulersFacade schedulers;
   private BaseAdapterDataModel<Disease> adapterDataModel;
   private String fileName;
+  private AppDatabase database;
 
   public MainPresenterImpl(MainPresenter.View $view, ResourceProvider $ResourceProvider,
-      SchedulersFacade $schedulers, BaseAdapterDataModel<Disease> $adapterDataModel) {
+      SchedulersFacade $schedulers, BaseAdapterDataModel<Disease> $adapterDataModel,
+      AppDatabase $database) {
     view = $view;
     resourceProvider = $ResourceProvider;
     schedulers = $schedulers;
     adapterDataModel = $adapterDataModel;
     fileName = "disease.json";
+    database = $database;
   }
 
   @Override public void onCreate() {

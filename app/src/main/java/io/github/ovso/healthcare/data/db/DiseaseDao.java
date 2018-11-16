@@ -10,21 +10,24 @@ import java.util.List;
 
 @Dao public interface DiseaseDao {
 
-  @Query("SELECT * FROM DISEASE_INFO")
+  @Query("SELECT * FROM DISEASE_LIKE")
   LiveData<List<DiseaseEntity>> getLiveDataItems();
 
-  @Query("SELECT * FROM DISEASE_INFO")
+  @Query("SELECT * FROM DISEASE_LIKE")
   List<DiseaseEntity> getItems();
 
-//  @Query("SELECT * FROM WEBSITE_INFO WHERE ID IN (:ids)")
-//  List<DiseaseEntity> loadAllByIds(int[] ids);
+  //  @Query("SELECT * FROM WEBSITE_INFO WHERE ID IN (:ids)")
+  //  List<DiseaseEntity> loadAllByIds(int[] ids);
 
   @Insert
-  void insert(DiseaseEntity website);
+  void insert(DiseaseEntity... entities);
+
+  @Insert
+  void insert(List<DiseaseEntity> entities);
 
   @Delete
-  void delete(DiseaseEntity website);
+  void delete(DiseaseEntity entity);
 
   @Update
-  void update(DiseaseEntity website);
+  void update(DiseaseEntity entity);
 }

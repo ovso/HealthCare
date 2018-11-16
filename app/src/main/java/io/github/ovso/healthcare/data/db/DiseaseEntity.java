@@ -3,15 +3,16 @@ package io.github.ovso.healthcare.data.db;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import lombok.ToString;
 
-@Entity(tableName = "DISEASE_INFO") public class DiseaseEntity {
+@ToString @Entity(tableName = "DISEASE_LIKE") public class DiseaseEntity {
   @PrimaryKey(autoGenerate = true)
   public int id;
 
-  @ColumnInfo(name = "TITLE")
-  public String title;
-  @ColumnInfo(name = "LINK")
-  public String link;
-  @ColumnInfo(name = "DESC")
-  public String description;
+  @ColumnInfo(name = "NAME")
+  public String name;
+  @ColumnInfo(name = "CODE")
+  public String code;
+  @ColumnInfo(name = "LIKE")
+  public boolean like;
 }

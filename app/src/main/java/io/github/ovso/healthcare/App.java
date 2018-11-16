@@ -1,10 +1,8 @@
 package io.github.ovso.healthcare;
 
 import android.content.Context;
-import com.crashlytics.android.Crashlytics;
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import io.fabric.sdk.android.Fabric;
 import io.github.ovso.healthcare.di.DaggerAppComponent;
 import io.github.ovso.healthcare.utils.AppInitUtils;
 import lombok.Getter;

@@ -32,5 +32,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
   }
 
-  public abstract DiseaseDao websiteDao();
+  public abstract DiseaseDao diseaseDao();
 }

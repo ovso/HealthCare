@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter public class Disease {
   private String code;
   private String name;
+  private boolean like;
 
   public static List<Disease> fromJson(String json) {
     Gson gson = new Gson();
