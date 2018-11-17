@@ -10,6 +10,8 @@ import io.github.ovso.healthcare.ui.result.ResultActivity;
 import io.github.ovso.healthcare.ui.result.di.ResultActivityModule;
 import io.github.ovso.healthcare.ui.result.di.ResultActivityViewModule;
 import io.github.ovso.healthcare.ui.splash.SplashActivity;
+import io.github.ovso.healthcare.ui.splash.di.SplashActivityModule;
+import io.github.ovso.healthcare.ui.splash.di.SplashActivityViewModule;
 import javax.inject.Singleton;
 
 @Module(includes = { AndroidSupportInjectionModule.class })
@@ -26,6 +28,7 @@ public abstract class ActivityBuilder {
   abstract ResultActivity bindResultActivity();
 
   @Singleton @ContributesAndroidInjector(modules = {
+      SplashActivityModule.class, SplashActivityViewModule.class
   })
   abstract SplashActivity bindSplashActivity();
 }
