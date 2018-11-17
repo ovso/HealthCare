@@ -6,11 +6,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import io.github.ovso.healthcare.data.db.dao.DiseaseDao;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
-import io.github.ovso.healthcare.data.db.model.DiseaseLikeEntity;
 
 @Database(entities = {
     DiseaseEntity.class,
-    DiseaseLikeEntity.class
 }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
   private final static String DATABASE_NAME = "disease";

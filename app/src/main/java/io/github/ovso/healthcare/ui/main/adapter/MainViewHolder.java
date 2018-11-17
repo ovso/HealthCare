@@ -9,27 +9,27 @@ import butterknife.OnClick;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import io.github.ovso.healthcare.R;
-import io.github.ovso.healthcare.data.network.model.Disease;
+import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseViewHolder;
 import lombok.Setter;
 
-public class MainViewHolder extends BaseViewHolder<Disease> implements OnLikeListener {
+public class MainViewHolder extends BaseViewHolder<DiseaseEntity> implements OnLikeListener {
 
   @BindView(R.id.code_text_view) TextView codeTextView;
   @BindView(R.id.disease_text_view) TextView diseaseTextView;
   @BindView(R.id.like_button) LikeButton likeButton;
-  @Setter private MainOnItemClickListener<Disease> onItemClickListener;
+  @Setter private MainOnItemClickListener<DiseaseEntity> onItemClickListener;
 
   private MainViewHolder(View itemView) {
     super(itemView);
   }
 
-  public void bind(Disease disease) {
-    super.bind(disease);
-    codeTextView.setText(disease.getCode());
-    diseaseTextView.setText(disease.getName());
+  public void bind(DiseaseEntity entity) {
+    super.bind(entity);
+    codeTextView.setText(entity.code);
+    diseaseTextView.setText(entity.name);
     likeButton.setOnLikeListener(this);
-    likeButton.setLiked(disease.isLike());
+    likeButton.setLiked(entity.like);
   }
 
   public static MainViewHolder create(ViewGroup parent) {

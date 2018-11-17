@@ -3,7 +3,7 @@ package io.github.ovso.healthcare.ui.main.di;
 import dagger.Module;
 import dagger.Provides;
 import io.github.ovso.healthcare.data.db.AppDatabase;
-import io.github.ovso.healthcare.data.network.model.Disease;
+import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.main.MainActivity;
@@ -19,7 +19,7 @@ import javax.inject.Singleton;
 
   @Provides MainPresenter provideMainPresenter(MainPresenter.View view,
       ResourceProvider resourceProvider, SchedulersFacade schedulersFacade,
-      BaseAdapterDataModel<Disease> adapterDataModel, MainActivity activity, AppDatabase database) {
+      BaseAdapterDataModel<DiseaseEntity> adapterDataModel, MainActivity activity, AppDatabase database) {
     MainPresenter presenter = new MainPresenterImpl(
         view, resourceProvider, schedulersFacade, adapterDataModel, database);
 
@@ -28,11 +28,11 @@ import javax.inject.Singleton;
     return presenter;
   }
 
-  @Singleton @Provides MainAdapter provideMainAdapter(MainOnItemClickListener<Disease> l) {
+  @Singleton @Provides MainAdapter provideMainAdapter(MainOnItemClickListener<DiseaseEntity> l) {
     return new MainAdapter.Builder().setItemClickListener(l).build();
   }
 
-  @Provides BaseAdapterDataModel<Disease> provideMainAdapterDataModel(MainAdapter adapter) {
+  @Provides BaseAdapterDataModel<DiseaseEntity> provideMainAdapterDataModel(MainAdapter adapter) {
     return adapter;
   }
 

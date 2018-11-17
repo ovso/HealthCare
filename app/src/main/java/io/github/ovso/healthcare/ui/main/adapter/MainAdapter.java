@@ -3,7 +3,7 @@ package io.github.ovso.healthcare.ui.main.adapter;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import io.github.ovso.healthcare.data.network.model.Disease;
+import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.ui.base.IBuilder;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
@@ -14,9 +14,9 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements BaseAdapterView,
-    BaseAdapterDataModel<Disease> {
+    BaseAdapterDataModel<DiseaseEntity> {
   private MainOnItemClickListener onItemClickListener;
-  private List<Disease> items = new ArrayList<>();
+  private List<DiseaseEntity> items = new ArrayList<>();
 
   private MainAdapter(Builder builder) {
     onItemClickListener = builder.itemClickListener;
@@ -30,7 +30,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements
   @Override public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int position) {
     if (baseViewHolder instanceof MainViewHolder) {
       MainViewHolder viewHolder = (MainViewHolder) baseViewHolder;
-      viewHolder.bind(items.get(position));
+      viewHolder.bind(getItem(position));
       viewHolder.setOnItemClickListener(onItemClickListener);
     }
   }
@@ -39,23 +39,23 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements
     return getSize();
   }
 
-  @Override public void add(Disease item) {
+  @Override public void add(DiseaseEntity item) {
     items.add(item);
   }
 
-  @Override public void addAll(List<Disease> $items) {
+  @Override public void addAll(List<DiseaseEntity> $items) {
     items.addAll($items);
   }
 
-  @Override public Disease remove(int position) {
+  @Override public DiseaseEntity remove(int position) {
     return items.remove(position);
   }
 
-  @Override public Disease getItem(int position) {
+  @Override public DiseaseEntity getItem(int position) {
     return items.get(position);
   }
 
-  @Override public void add(int index, Disease item) {
+  @Override public void add(int index, DiseaseEntity item) {
     items.add(index, item);
   }
 

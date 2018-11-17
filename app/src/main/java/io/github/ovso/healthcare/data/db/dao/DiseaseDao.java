@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
-import io.github.ovso.healthcare.data.db.model.DiseaseLikeEntity;
 import java.util.List;
 
 @Dao public interface DiseaseDao {

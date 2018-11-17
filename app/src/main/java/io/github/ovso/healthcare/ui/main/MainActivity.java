@@ -17,7 +17,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import com.google.android.material.navigation.NavigationView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
-import io.github.ovso.healthcare.data.network.model.Disease;
+import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
@@ -26,7 +26,7 @@ import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
-    MainOnItemClickListener<Disease>, SearchLiveo.OnSearchListener {
+    MainOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener {
 
   @Inject MainPresenter presenter;
   @Inject MainAdapter adapter;
@@ -54,9 +54,9 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     adapterView.refresh();
   }
 
-  @Override public void navigateToDetail(Disease disease) {
+  @Override public void navigateToDetail(DiseaseEntity disease) {
     Intent intent = new Intent(this, ResultActivity.class);
-    intent.putExtra(KeyName.DISEASE_NAME.getValue(), disease.getName());
+    intent.putExtra(KeyName.DISEASE_NAME.getValue(), disease.name);
     startActivity(intent);
   }
 
@@ -111,11 +111,11 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
         .show();
   }
 
-  @Override public void onItemClick(Disease disease) {
+  @Override public void onItemClick(DiseaseEntity disease) {
     presenter.onItemClick(disease);
   }
 
-  @Override public void onItemLikeClick(Disease item, boolean checked) {
+  @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {
     presenter.onItemLikeClick(item, checked);
   }
 
