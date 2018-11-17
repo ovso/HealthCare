@@ -62,9 +62,10 @@ public class MainPresenterImpl implements MainPresenter {
     view.navigateToDetail(disease);
   }
 
-  @Override public void onItemLikeClick(Disease item) {
+  @Override public void onItemLikeClick(Disease item, boolean checked) {
     Timber.d("onItemLikeClick = " + item);
-    view.showNotiDialog();
+    item.setLike(checked);
+    //view.showNotiDialog();
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

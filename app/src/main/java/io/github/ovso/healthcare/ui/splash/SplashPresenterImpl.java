@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pixplicity.easyprefs.library.Prefs;
 import io.github.ovso.healthcare.data.db.AppDatabase;
-import io.github.ovso.healthcare.data.db.DiseaseEntity;
+import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
 import io.reactivex.Observable;

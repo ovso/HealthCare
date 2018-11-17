@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
 import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.base.listener.EndlessOnScrollListener;
 import io.github.ovso.healthcare.ui.result.adapter.ResultAdapter;
@@ -22,7 +22,7 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
     BaseOnItemClickListener<SearchItem>, EndlessOnScrollListener.OnLoadMoreListener {
 
   @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefresh;
-  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
+  @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
   @Inject ResultPresenter presenter;
   @Inject ResultAdapter adapter;

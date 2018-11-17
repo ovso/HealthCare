@@ -5,11 +5,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter public class Disease {
   private String code;
   private String name;
-  private boolean like;
+  @Setter private boolean like;
 
   public static List<Disease> fromJson(String json) {
     Gson gson = new Gson();

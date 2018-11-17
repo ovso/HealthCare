@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
@@ -19,19 +20,18 @@ import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.model.Disease;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.MyRecyclerView;
-import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
+import io.github.ovso.healthcare.ui.main.adapter.MainOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
-    OnRecyclerViewItemClickListener<Disease>, SearchLiveo.OnSearchListener {
+    MainOnItemClickListener<Disease>, SearchLiveo.OnSearchListener {
 
   @Inject MainPresenter presenter;
   @Inject MainAdapter adapter;
   @Inject BaseAdapterView adapterView;
-  @BindView(R.id.recycler_view) MyRecyclerView recyclerView;
+  @BindView(R.id.recycler_view) RecyclerView recyclerView;
   @BindView(R.id.drawer_layout) DrawerLayout drawer;
   @BindView(R.id.navigation_view) NavigationView navigationView;
   @BindView(R.id.search_liveo) SearchLiveo searchLiveo;
@@ -43,7 +43,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   @Override public void setupRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setAdapter(adapter);
-    recyclerView.setOnItemClickListener(this);
     RecyclerViewDivider.with(this)
         .size(1)
         .color(ContextCompat.getColor(this, android.R.color.darker_gray))
@@ -116,8 +115,8 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     presenter.onItemClick(disease);
   }
 
-  @Override public void onItemLikeClick(Disease item) {
-    presenter.onItemLikeClick(item);
+  @Override public void onItemLikeClick(Disease item, boolean checked) {
+    presenter.onItemLikeClick(item, checked);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

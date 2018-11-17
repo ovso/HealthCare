@@ -1,11 +1,11 @@
-package io.github.ovso.healthcare.data.db;
+package io.github.ovso.healthcare.data.db.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import lombok.ToString;
 
-@ToString @Entity(tableName = "DISEASE_LIKE") public class DiseaseEntity {
+@ToString @Entity(tableName = "DISEASE_INFO") public class DiseaseEntity {
   @PrimaryKey(autoGenerate = true)
   public int id;
 

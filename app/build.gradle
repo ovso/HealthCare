@@ -116,6 +116,9 @@ dependencies {
 
   // prefs
   implementation "com.pixplicity.easyprefs:library:$easyprefs_version"
+
+  // stetho
+  implementation "com.facebook.stetho:stetho:$stetho_version"
 }
 
 apply plugin: 'com.google.gms.google-services'

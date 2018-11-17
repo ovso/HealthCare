@@ -2,20 +2,25 @@ package io.github.ovso.healthcare.ui.main.adapter;
 
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.ovso.healthcare.data.network.model.Disease;
+import io.github.ovso.healthcare.ui.base.IBuilder;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
-import io.github.ovso.healthcare.ui.base.adapter.BaseRecyclerAdapter;
 import io.github.ovso.healthcare.ui.base.adapter.BaseViewHolder;
-import io.github.ovso.healthcare.ui.base.adapter.OnRecyclerViewItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
-public class MainAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
+public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements BaseAdapterView,
     BaseAdapterDataModel<Disease> {
-  @Setter private OnRecyclerViewItemClickListener onRecyclerViewItemClickListener;
+  private MainOnItemClickListener onItemClickListener;
   private List<Disease> items = new ArrayList<>();
+
+  private MainAdapter(Builder builder) {
+    onItemClickListener = builder.itemClickListener;
+  }
 
   @NonNull @Override
   public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -26,7 +31,7 @@ public class MainAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
     if (baseViewHolder instanceof MainViewHolder) {
       MainViewHolder viewHolder = (MainViewHolder) baseViewHolder;
       viewHolder.bind(items.get(position));
-      viewHolder.setOnRecyclerViewItemClickListener(onRecyclerViewItemClickListener);
+      viewHolder.setOnItemClickListener(onItemClickListener);
     }
   }
 
@@ -64,5 +69,13 @@ public class MainAdapter extends BaseRecyclerAdapter implements BaseAdapterView,
 
   @Override public void refresh() {
     notifyDataSetChanged();
+  }
+
+  public static class Builder implements IBuilder<MainAdapter> {
+    @Setter @Accessors(chain = true) private MainOnItemClickListener itemClickListener;
+
+    @Override public MainAdapter build() {
+      return new MainAdapter(this);
+    }
   }
 }

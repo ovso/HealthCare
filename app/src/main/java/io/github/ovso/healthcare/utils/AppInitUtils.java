@@ -3,6 +3,7 @@ package io.github.ovso.healthcare.utils;
 import android.content.Context;
 import android.content.ContextWrapper;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 import io.fabric.sdk.android.Fabric;
 import io.github.ovso.healthcare.App;
@@ -34,5 +35,9 @@ public class AppInitUtils {
         .setPrefsName(context.getPackageName())
         .setUseDefaultSharedPreference(true)
         .build();
+  }
+
+  public static void stetho(Context content) {
+    Stetho.initializeWithDefaults(content);
   }
 }

@@ -16,7 +16,7 @@ public interface MainPresenter extends LifecycleObserver {
 
   void onBackPressed(boolean isDrawerOpen);
 
-  void onItemLikeClick(Disease item);
+  void onItemLikeClick(Disease item, boolean checked);
 
   interface View {
 

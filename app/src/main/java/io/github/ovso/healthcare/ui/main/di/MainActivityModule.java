@@ -10,6 +10,7 @@ import io.github.ovso.healthcare.ui.main.MainActivity;
 import io.github.ovso.healthcare.ui.main.MainPresenter;
 import io.github.ovso.healthcare.ui.main.MainPresenterImpl;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
+import io.github.ovso.healthcare.ui.main.adapter.MainOnItemClickListener;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
 import javax.inject.Singleton;
@@ -27,8 +28,8 @@ import javax.inject.Singleton;
     return presenter;
   }
 
-  @Singleton @Provides MainAdapter provideMainAdapter() {
-    return new MainAdapter();
+  @Singleton @Provides MainAdapter provideMainAdapter(MainOnItemClickListener<Disease> l) {
+    return new MainAdapter.Builder().setItemClickListener(l).build();
   }
 
   @Provides BaseAdapterDataModel<Disease> provideMainAdapterDataModel(MainAdapter adapter) {

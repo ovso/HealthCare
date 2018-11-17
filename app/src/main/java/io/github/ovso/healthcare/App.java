@@ -17,6 +17,7 @@ public class App extends DaggerApplication {
     AppInitUtils.timer();
     AppInitUtils.crash(this);
     AppInitUtils.prefs(this);
+    AppInitUtils.stetho(this);
   }
 
   @Override protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
