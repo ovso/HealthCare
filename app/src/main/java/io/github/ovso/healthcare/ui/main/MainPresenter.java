@@ -9,7 +9,8 @@ public interface MainPresenter extends LifecycleObserver {
 
   @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   void onCreate();
-
+  @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+  void reqDatabase();
   void onItemClick(DiseaseEntity disease);
 
   void changedSearch(CharSequence charSequence);
@@ -24,7 +25,7 @@ public interface MainPresenter extends LifecycleObserver {
 
     void refresh();
 
-    void navigateToDetail(DiseaseEntity disease);
+    void navigateToResult(DiseaseEntity disease);
 
     void setupToolbar();
 

@@ -1,6 +1,9 @@
 package io.github.ovso.healthcare.ui.main;
 
 import android.text.TextUtils;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.OnLifecycleEvent;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.db.AppDatabase;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
@@ -17,23 +20,23 @@ import timber.log.Timber;
 
 public class MainPresenterImpl implements MainPresenter {
 
+  private final LifecycleOwner lifeCycleOwner;
   private MainPresenter.View view;
   private ResourceProvider resourceProvider;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
   private SchedulersFacade schedulers;
   private BaseAdapterDataModel<DiseaseEntity> adapterDataModel;
-  private String fileName;
   private AppDatabase database;
 
   public MainPresenterImpl(MainPresenter.View $view, ResourceProvider $ResourceProvider,
       SchedulersFacade $schedulers, BaseAdapterDataModel<DiseaseEntity> $adapterDataModel,
-      AppDatabase $database) {
+      AppDatabase $database, LifecycleOwner $lifeCycleOwner) {
     view = $view;
     resourceProvider = $ResourceProvider;
     schedulers = $schedulers;
     adapterDataModel = $adapterDataModel;
-    fileName = "disease.json";
     database = $database;
+    lifeCycleOwner = $lifeCycleOwner;
   }
 
   @Override public void onCreate() {
@@ -47,9 +50,8 @@ public class MainPresenterImpl implements MainPresenter {
     reqDatabase();
   }
 
-  private void reqDatabase() {
-    int size = database.diseaseDao().getItems().size();
-    Timber.d("size = " + size);
+  @Override
+  public void reqDatabase() {
     Single.fromCallable(() -> database.diseaseDao().getItems())
         .subscribeOn(schedulers.io())
         .observeOn(schedulers.ui())
@@ -59,6 +61,7 @@ public class MainPresenterImpl implements MainPresenter {
           }
 
           @Override public void onSuccess(List<DiseaseEntity> entities) {
+            adapterDataModel.clear();
             adapterDataModel.addAll(entities);
             view.refresh();
           }
@@ -67,10 +70,19 @@ public class MainPresenterImpl implements MainPresenter {
             Timber.d(e);
           }
         });
+
+    database.diseaseDao()
+        .getLiveItem()
+        .observe(lifeCycleOwner, entity -> Timber.d("entity = " + entity.toString()));
+    //database.diseaseDao().getLiveItems().observe(lifeCycleOwner, entities -> {
+    //  adapterDataModel.clear();
+    //  adapterDataModel.addAll(entities);
+    //  view.refresh();
+    //});
   }
 
   @Override public void onItemClick(DiseaseEntity disease) {
-    view.navigateToDetail(disease);
+    view.navigateToResult(disease);
   }
 
   @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {

@@ -1,5 +1,6 @@
 package io.github.ovso.healthcare.ui.like.di;
 
+import androidx.lifecycle.LifecycleOwner;
 import dagger.Binds;
 import dagger.Module;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
@@ -12,4 +13,6 @@ import io.github.ovso.healthcare.ui.like.LikePresenter;
 
   @Binds
   abstract DiseaseOnItemClickListener<DiseaseEntity> bindLikeItemClickListener(LikeActivity act);
+
+  @Binds abstract LifecycleOwner bindLifecycleOwner(LikeActivity act);
 }

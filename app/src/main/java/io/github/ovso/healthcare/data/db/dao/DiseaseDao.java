@@ -15,6 +15,9 @@ import java.util.List;
   LiveData<List<DiseaseEntity>> getLiveItems();
 
   @Query("SELECT * FROM DISEASE_INFO")
+  LiveData<DiseaseEntity> getLiveItem();
+
+  @Query("SELECT * FROM DISEASE_INFO")
   List<DiseaseEntity> getItems();
 
   @Query("SELECT * FROM DISEASE_INFO WHERE LIKED = 1")

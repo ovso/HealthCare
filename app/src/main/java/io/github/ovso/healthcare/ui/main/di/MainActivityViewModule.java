@@ -1,5 +1,6 @@
 package io.github.ovso.healthcare.ui.main.di;
 
+import androidx.lifecycle.LifecycleOwner;
 import dagger.Binds;
 import dagger.Module;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
@@ -11,5 +12,8 @@ import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 
   @Binds abstract MainPresenter.View bindMainView(MainActivity act);
 
-  @Binds abstract DiseaseOnItemClickListener<DiseaseEntity> bindOnItemClickListener(MainActivity act);
+  @Binds
+  abstract DiseaseOnItemClickListener<DiseaseEntity> bindOnItemClickListener(MainActivity act);
+
+  @Binds abstract LifecycleOwner bindLifecycleOwner(MainActivity act);
 }

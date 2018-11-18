@@ -16,5 +16,4 @@ import lombok.Getter;
   PART("part"),
   DISEASE_NAME("disease_name");
   private String value;
-
 }

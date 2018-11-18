@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     adapterView.refresh();
   }
 
-  @Override public void navigateToDetail(DiseaseEntity disease) {
+  @Override public void navigateToResult(DiseaseEntity disease) {
     Intent intent = new Intent(this, ResultActivity.class);
     intent.putExtra(KeyName.DISEASE_NAME.getValue(), disease.name);
     startActivity(intent);
