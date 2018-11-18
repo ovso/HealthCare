@@ -1,9 +1,7 @@
 package io.github.ovso.healthcare.ui.main;
 
 import android.text.TextUtils;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.db.AppDatabase;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;

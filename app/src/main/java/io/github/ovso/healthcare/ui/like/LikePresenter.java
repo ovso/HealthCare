@@ -23,5 +23,7 @@ public interface LikePresenter extends LifecycleObserver {
     void refresh();
 
     void navigateToResult(DiseaseEntity item);
+
+    void setupActionBar();
   }
 }

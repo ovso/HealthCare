@@ -29,6 +29,7 @@ public class LikePresenterImpl implements LikePresenter, Observer<List<DiseaseEn
   }
 
   @Override public void onCreate() {
+    view.setupActionBar();
     view.setupRecyclerView();
     database.diseaseDao().getLikeLiveItems().observe(lifecycleOwner, this);
   }

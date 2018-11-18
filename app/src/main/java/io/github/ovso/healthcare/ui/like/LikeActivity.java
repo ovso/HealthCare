@@ -1,6 +1,8 @@
 package io.github.ovso.healthcare.ui.like;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +48,12 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
     Intent intent = new Intent(this, ResultActivity.class);
     intent.putExtra(KeyName.DISEASE_NAME.getValue(), item.name);
     startActivity(intent);
+  }
 
+  @Override public void setupActionBar() {
+    setTitle(R.string.like);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
   }
 
   @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {
@@ -55,5 +62,14 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
 
   @Override public void onItemClick(DiseaseEntity entity) {
     presenter.onItemClick(entity);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    finish();
+    return true;
+  }
+
+  @Override public boolean isTitle() {
+    return true;
   }
 }
