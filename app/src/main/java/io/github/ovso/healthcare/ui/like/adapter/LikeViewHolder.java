@@ -1,4 +1,4 @@
-package io.github.ovso.healthcare.ui.main.adapter;
+package io.github.ovso.healthcare.ui.like.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +14,14 @@ import io.github.ovso.healthcare.ui.base.adapter.BaseViewHolder;
 import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 import lombok.Setter;
 
-public class MainViewHolder extends BaseViewHolder<DiseaseEntity> implements OnLikeListener {
+public class LikeViewHolder extends BaseViewHolder<DiseaseEntity> implements OnLikeListener {
 
   @BindView(R.id.code_text_view) TextView codeTextView;
   @BindView(R.id.disease_text_view) TextView diseaseTextView;
   @BindView(R.id.like_button) LikeButton likeButton;
   @Setter private DiseaseOnItemClickListener<DiseaseEntity> onItemClickListener;
 
-  private MainViewHolder(View itemView) {
+  private LikeViewHolder(View itemView) {
     super(itemView);
   }
 
@@ -33,10 +33,10 @@ public class MainViewHolder extends BaseViewHolder<DiseaseEntity> implements OnL
     likeButton.setLiked(entity.like);
   }
 
-  public static MainViewHolder create(ViewGroup parent) {
-    return new MainViewHolder(
+  public static LikeViewHolder create(ViewGroup parent) {
+    return new LikeViewHolder(
         LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.list_item_main, parent, false));
+            .inflate(R.layout.list_item_like, parent, false));
   }
 
   @OnClick(R.id.root_view) void onItemClick() {

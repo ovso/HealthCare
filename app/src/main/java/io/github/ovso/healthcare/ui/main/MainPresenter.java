@@ -37,5 +37,7 @@ public interface MainPresenter extends LifecycleObserver {
     void setTitle(String title);
 
     void showNotiDialog();
+
+    void setupNavigationView();
   }
 }

@@ -38,6 +38,7 @@ public class MainPresenterImpl implements MainPresenter {
 
   @Override public void onCreate() {
     view.setupToolbar();
+    view.setupNavigationView();
     view.setTitle(resourceProvider.getString(R.string.app_name));
     view.setupSearchLiveo();
     view.setupRecyclerView();
@@ -73,9 +74,8 @@ public class MainPresenterImpl implements MainPresenter {
   }
 
   @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {
-    Timber.d("onItemLikeClick = " + item);
     item.like = checked;
-    //view.showNotiDialog();
+    database.diseaseDao().update(item);
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

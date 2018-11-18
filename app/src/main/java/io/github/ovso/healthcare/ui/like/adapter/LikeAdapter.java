@@ -1,4 +1,4 @@
-package io.github.ovso.healthcare.ui.main.adapter;
+package io.github.ovso.healthcare.ui.like.adapter;
 
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
@@ -14,23 +14,23 @@ import java.util.List;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements BaseAdapterView,
+public class LikeAdapter extends RecyclerView.Adapter<BaseViewHolder> implements BaseAdapterView,
     BaseAdapterDataModel<DiseaseEntity> {
   private DiseaseOnItemClickListener onItemClickListener;
   private List<DiseaseEntity> items = new ArrayList<>();
 
-  private MainAdapter(Builder builder) {
+  private LikeAdapter(Builder builder) {
     onItemClickListener = builder.itemClickListener;
   }
 
   @NonNull @Override
   public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-    return MainViewHolder.create(viewGroup);
+    return LikeViewHolder.create(viewGroup);
   }
 
   @Override public void onBindViewHolder(@NonNull BaseViewHolder baseViewHolder, int position) {
-    if (baseViewHolder instanceof MainViewHolder) {
-      MainViewHolder viewHolder = (MainViewHolder) baseViewHolder;
+    if (baseViewHolder instanceof LikeViewHolder) {
+      LikeViewHolder viewHolder = (LikeViewHolder) baseViewHolder;
       viewHolder.bind(getItem(position));
       viewHolder.setOnItemClickListener(onItemClickListener);
     }
@@ -72,11 +72,11 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> implements
     notifyDataSetChanged();
   }
 
-  public static class Builder implements IBuilder<MainAdapter> {
+  public static class Builder implements IBuilder<LikeAdapter> {
     @Setter @Accessors(chain = true) private DiseaseOnItemClickListener itemClickListener;
 
-    @Override public MainAdapter build() {
-      return new MainAdapter(this);
+    @Override public LikeAdapter build() {
+      return new LikeAdapter(this);
     }
   }
 }

@@ -3,6 +3,9 @@ package io.github.ovso.healthcare.di;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
+import io.github.ovso.healthcare.ui.like.LikeActivity;
+import io.github.ovso.healthcare.ui.like.di.LikeActivityModule;
+import io.github.ovso.healthcare.ui.like.di.LikeActivityViewModule;
 import io.github.ovso.healthcare.ui.main.MainActivity;
 import io.github.ovso.healthcare.ui.main.di.MainActivityModule;
 import io.github.ovso.healthcare.ui.main.di.MainActivityViewModule;
@@ -31,4 +34,9 @@ public abstract class ActivityBuilder {
       SplashActivityModule.class, SplashActivityViewModule.class
   })
   abstract SplashActivity bindSplashActivity();
+
+  @Singleton @ContributesAndroidInjector(modules = {
+      LikeActivityModule.class, LikeActivityViewModule.class
+  })
+  abstract LikeActivity bindLikeActivity();
 }

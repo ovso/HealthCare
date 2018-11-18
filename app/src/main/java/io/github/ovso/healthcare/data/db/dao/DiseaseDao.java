@@ -17,6 +17,9 @@ import java.util.List;
   @Query("SELECT * FROM DISEASE_INFO")
   List<DiseaseEntity> getItems();
 
+  @Query("SELECT * FROM DISEASE_INFO WHERE LIKED = 1")
+  LiveData<List<DiseaseEntity>> getLikeLiveItems();
+
   @Insert
   void insert(DiseaseEntity... entities);
 

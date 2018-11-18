@@ -13,6 +13,6 @@ import lombok.ToString;
   public String name;
   @ColumnInfo(name = "CODE")
   public String code;
-  @ColumnInfo(name = "LIKE")
+  @ColumnInfo(name = "LIKED")
   public boolean like;
 }

@@ -20,13 +20,14 @@ import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
+import io.github.ovso.healthcare.ui.like.LikeActivity;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
-import io.github.ovso.healthcare.ui.main.adapter.MainOnItemClickListener;
+import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
-    MainOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener {
+    DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener {
 
   @Inject MainPresenter presenter;
   @Inject MainAdapter adapter;
@@ -80,11 +81,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
             R.string.navigation_drawer_close);
     drawer.addDrawerListener(toggle);
     toggle.syncState();
-    navigationView.setNavigationItemSelectedListener(
-        item -> {
-          drawer.closeDrawer(GravityCompat.START);
-          return true;
-        });
   }
 
   @Override public boolean isTitle() {
@@ -109,6 +105,20 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     new AlertDialog.Builder(this).setMessage(R.string.comming_soon_favorite)
         .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
         .show();
+  }
+
+  @Override public void setupNavigationView() {
+    navigationView.setNavigationItemSelectedListener(
+        item -> {
+          drawer.closeDrawer(GravityCompat.START);
+          navigateToLike();
+          return true;
+        });
+  }
+
+  private void navigateToLike() {
+    Intent intent = new Intent(this, LikeActivity.class);
+    startActivity(intent);
   }
 
   @Override public void onItemClick(DiseaseEntity disease) {
