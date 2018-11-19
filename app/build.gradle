@@ -119,6 +119,9 @@ dependencies {
 
   // stetho
   implementation "com.facebook.stetho:stetho:$stetho_version"
+
+  // lottie
+  implementation "com.airbnb.android:lottie:$lottie_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
