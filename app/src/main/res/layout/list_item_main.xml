@@ -36,14 +36,27 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:text="신경근 및 신경총 장애"
       />
-  <com.like.LikeButton
+  <!--
+    <com.like.LikeButton
+        android:id="@+id/like_button"
+        android:layout_width="?android:actionBarSize"
+        android:layout_height="?android:actionBarSize"
+        app:icon_size="10dp"
+        app:icon_type="heart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+  -->
+  <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/like_button"
       android:layout_width="?android:actionBarSize"
       android:layout_height="?android:actionBarSize"
-      app:icon_size="10dp"
-      app:icon_type="heart"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
+      app:lottie_autoPlay="false"
+      app:lottie_fileName="like.json"
+      app:lottie_loop="false"
       />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,9 +3,11 @@ package io.github.ovso.healthcare.ui.main.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
+import com.airbnb.lottie.LottieAnimationView;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import io.github.ovso.healthcare.R;
@@ -18,8 +20,9 @@ public class MainViewHolder extends BaseViewHolder<DiseaseEntity> implements OnL
 
   @BindView(R.id.code_text_view) TextView codeTextView;
   @BindView(R.id.disease_text_view) TextView diseaseTextView;
-  @BindView(R.id.like_button) LikeButton likeButton;
+  @BindView(R.id.like_button) LottieAnimationView likeButton;
   @Setter private DiseaseOnItemClickListener<DiseaseEntity> onItemClickListener;
+  private boolean check;
 
   private MainViewHolder(View itemView) {
     super(itemView);
@@ -29,8 +32,21 @@ public class MainViewHolder extends BaseViewHolder<DiseaseEntity> implements OnL
     super.bind(entity);
     codeTextView.setText(entity.code);
     diseaseTextView.setText(entity.name);
-    likeButton.setOnLikeListener(this);
-    likeButton.setLiked(entity.like);
+    likeButton.setOnClickListener(v -> {
+
+      check = !check;
+      if (check) {
+        likeButton.setAnimation("like.json");
+        likeButton.playAnimation();
+      } else {
+        likeButton.cancelAnimation();
+        likeButton.clearAnimation();
+        likeButton.setProgress(0);
+      }
+    });
+    //likeButton.setOnLikeListener(this);
+    //likeButton.setLiked(entity.like);
+
   }
 
   public static MainViewHolder create(ViewGroup parent) {
