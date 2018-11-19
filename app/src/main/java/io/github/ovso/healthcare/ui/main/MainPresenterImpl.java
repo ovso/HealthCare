@@ -44,7 +44,6 @@ public class MainPresenterImpl implements MainPresenter {
     view.setupSearchLiveo();
     view.setupRecyclerView();
 
-    //reqDiseases();
     reqDatabase();
   }
 
@@ -68,17 +67,16 @@ public class MainPresenterImpl implements MainPresenter {
             Timber.d(e);
           }
         });
-
-    database.diseaseDao()
-        .getLiveItem()
-        .observe(lifeCycleOwner, entity -> Timber.d("entity = " + entity.toString()));
-    //database.diseaseDao().getLiveItems().observe(lifeCycleOwner, entities -> {
-    //  adapterDataModel.clear();
-    //  adapterDataModel.addAll(entities);
-    //  view.refresh();
-    //});
   }
-
+  private void showEmpty() {
+    if(adapterDataModel.getSize() == 0) {
+      view.showEmptyAni();
+      view.hideRecyclerView();
+    } else {
+      view.hideEmpthAni();
+      view.showRecyclerView();
+    }
+  }
   @Override public void onItemClick(DiseaseEntity disease) {
     view.navigateToResult(disease);
   }
@@ -103,7 +101,8 @@ public class MainPresenterImpl implements MainPresenter {
             adapterDataModel.clear();
             adapterDataModel.addAll(diseases);
             view.refresh();
-          }, throwable -> Timber.d(throwable));
+            showEmpty();
+          }, Timber::d);
       compositeDisposable.add(subscribe);
     } else {
       Disposable subscribe = Observable.fromCallable(() -> database.diseaseDao().getItems())
@@ -111,6 +110,7 @@ public class MainPresenterImpl implements MainPresenter {
             adapterDataModel.clear();
             adapterDataModel.addAll(items);
             view.refresh();
+            showEmpty();
           });
       compositeDisposable.add(subscribe);
     }

@@ -3,6 +3,7 @@ package io.github.ovso.healthcare.ui.main;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import br.com.liveo.searchliveo.SearchLiveo;
 import butterknife.BindView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import com.google.android.material.navigation.NavigationView;
 import io.github.ovso.healthcare.R;
@@ -36,6 +38,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   @BindView(R.id.drawer_layout) DrawerLayout drawer;
   @BindView(R.id.navigation_view) NavigationView navigationView;
   @BindView(R.id.search_liveo) SearchLiveo searchLiveo;
+  @BindView(R.id.empty_animation) LottieAnimationView emptyAniView;
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_main;
@@ -114,6 +117,24 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
           navigateToLike();
           return true;
         });
+  }
+
+  @Override public void showEmptyAni() {
+    emptyAniView.playAnimation();
+    emptyAniView.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideEmpthAni() {
+    emptyAniView.cancelAnimation();
+    emptyAniView.setVisibility(View.GONE);
+  }
+
+  @Override public void hideRecyclerView() {
+    recyclerView.setVisibility(View.GONE);
+  }
+
+  @Override public void showRecyclerView() {
+    recyclerView.setVisibility(View.VISIBLE);
   }
 
   private void navigateToLike() {

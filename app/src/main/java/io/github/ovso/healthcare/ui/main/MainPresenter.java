@@ -40,5 +40,13 @@ public interface MainPresenter extends LifecycleObserver {
     void showNotiDialog();
 
     void setupNavigationView();
+
+    void showEmptyAni();
+
+    void hideEmpthAni();
+
+    void hideRecyclerView();
+
+    void showRecyclerView();
   }
 }
