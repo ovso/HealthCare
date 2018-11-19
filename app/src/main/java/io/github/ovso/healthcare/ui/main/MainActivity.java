@@ -129,14 +129,6 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     emptyAniView.setVisibility(View.GONE);
   }
 
-  @Override public void hideRecyclerView() {
-    recyclerView.setVisibility(View.GONE);
-  }
-
-  @Override public void showRecyclerView() {
-    recyclerView.setVisibility(View.VISIBLE);
-  }
-
   private void navigateToLike() {
     Intent intent = new Intent(this, LikeActivity.class);
     startActivity(intent);

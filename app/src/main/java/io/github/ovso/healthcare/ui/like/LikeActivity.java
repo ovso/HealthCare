@@ -1,12 +1,13 @@
 package io.github.ovso.healthcare.ui.like;
 
 import android.content.Intent;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import com.airbnb.lottie.LottieAnimationView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
@@ -22,6 +23,7 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
     DiseaseOnItemClickListener<DiseaseEntity> {
 
   @BindView(R.id.recycler_view) RecyclerView recyclerView;
+  @BindView(R.id.empty_animation) LottieAnimationView emptyAniView;
   @Inject LikePresenter presenter;
   @Inject LikeAdapter adapter;
   @Inject BaseAdapterView adapterView;
@@ -54,6 +56,16 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
     setTitle(R.string.like);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+  }
+
+  @Override public void showEmptyAni() {
+    emptyAniView.playAnimation();
+    emptyAniView.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideEmpthAni() {
+    emptyAniView.cancelAnimation();
+    emptyAniView.setVisibility(View.GONE);
   }
 
   @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {

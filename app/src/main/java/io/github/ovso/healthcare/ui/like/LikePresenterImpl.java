@@ -51,5 +51,14 @@ public class LikePresenterImpl implements LikePresenter, Observer<List<DiseaseEn
     adapterDataModel.clear();
     adapterDataModel.addAll(entities);
     view.refresh();
+    showEmpty();
+  }
+
+  private void showEmpty() {
+    if (adapterDataModel.getSize() == 0) {
+      view.showEmptyAni();
+    } else {
+      view.hideEmpthAni();
+    }
   }
 }
