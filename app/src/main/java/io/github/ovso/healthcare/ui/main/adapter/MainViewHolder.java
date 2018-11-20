@@ -29,6 +29,7 @@ public class MainViewHolder extends BaseViewHolder<DiseaseEntity> {
     codeTextView.setText(entity.code);
     diseaseTextView.setText(entity.name);
     likeButton.setTag(entity.like);
+    likeButton.setProgress(entity.like ? 1 : 0);
   }
 
   @OnClick(R.id.like_button) void onLikeClick(View view) {
@@ -47,7 +48,7 @@ public class MainViewHolder extends BaseViewHolder<DiseaseEntity> {
   public static MainViewHolder create(ViewGroup parent) {
     return new MainViewHolder(
         LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.list_item_main, parent, false));
+            .inflate(R.layout.list_item_disease, parent, false));
   }
 
   @OnClick(R.id.root_view) void onItemClick() {

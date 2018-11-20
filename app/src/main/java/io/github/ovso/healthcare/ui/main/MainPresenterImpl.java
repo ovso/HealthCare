@@ -68,13 +68,15 @@ public class MainPresenterImpl implements MainPresenter {
           }
         });
   }
+
   private void showEmpty() {
-    if(adapterDataModel.getSize() == 0) {
+    if (adapterDataModel.getSize() == 0) {
       view.showEmptyAni();
     } else {
       view.hideEmpthAni();
     }
   }
+
   @Override public void onItemClick(DiseaseEntity disease) {
     view.navigateToResult(disease);
   }
