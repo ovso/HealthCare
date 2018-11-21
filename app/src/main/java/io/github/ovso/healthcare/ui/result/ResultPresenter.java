@@ -40,5 +40,9 @@ public interface ResultPresenter extends LifecycleObserver {
     void hideLoading();
 
     void setLoaded();
+
+    void showEmptyAni();
+
+    void hideEmpthAni();
   }
 }

@@ -64,6 +64,7 @@ public class ResultPresenterImpl implements ResultPresenter {
               view.refresh();
               view.setLoaded();
               view.hideLoading();
+              showEmpty();
             }
 
             @Override public void onError(Throwable e) {
@@ -73,6 +74,14 @@ public class ResultPresenterImpl implements ResultPresenter {
           });
     } else {
       view.hideLoading();
+    }
+  }
+
+  private void showEmpty() {
+    if (adapterDataModel.getSize() == 0) {
+      view.showEmptyAni();
+    } else {
+      view.hideEmpthAni();
     }
   }
 

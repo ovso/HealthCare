@@ -3,10 +3,12 @@ package io.github.ovso.healthcare.ui.result;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
+import com.airbnb.lottie.LottieAnimationView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
@@ -23,6 +25,7 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefresh;
   @BindView(R.id.recycler_view) RecyclerView recyclerView;
+  @BindView(R.id.empty_animation) LottieAnimationView emptyAniView;
 
   @Inject ResultPresenter presenter;
   @Inject ResultAdapter adapter;
@@ -87,6 +90,16 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public void setLoaded() {
     ((EndlessOnScrollListener) recyclerView.getTag()).setLoaded();
+  }
+
+  @Override public void showEmptyAni() {
+    emptyAniView.playAnimation();
+    emptyAniView.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideEmpthAni() {
+    emptyAniView.cancelAnimation();
+    emptyAniView.setVisibility(View.GONE);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
