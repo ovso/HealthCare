@@ -7,7 +7,7 @@ versions.dagger = "2.17"
 versions.junit = "4.12"
 versions.espresso = "3.1.0"
 versions.retrofit = "2.4.0"
-versions.okhttp_logging_interceptor = "3.9.0"
+versions.okhttp = "3.12.0"
 versions.constraint_layout = "2.0.0-alpha2"
 versions.glide = "4.8.0"
 versions.timber = "4.7.0"
@@ -17,6 +17,17 @@ versions.rx_android = "2.1.0"
 versions.rx_binding = "3.0.0-alpha1"
 versions.paging = "2.0.0"
 versions.butterknife = '9.0.0-rc2'
+versions.lombok = '1.16.18'
+versions.jsr250_api = '1.0'
+versions.firebase_core = '16.0.4'
+versions.firebase_crashlytics = '2.9.5'
+versions.searchliveo = '1.1.2'
+versions.rv_divider = '2.0.1'
+versions.joda_time = '2.10'
+versions.easyprefs = '1.9.0'
+versions.stetho = '1.5.0'
+versions.lottie = '2.8.0'
+
 def deps = [:]
 
 def support = [:]
@@ -47,9 +58,13 @@ deps.lifecycle = lifecycle
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 deps.retrofit = retrofit
-deps.okhttp_logging_interceptor =
-    "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
+
+def okhttp = [:]
+okhttp.runtime = "com.squareup.okhttp3:okhttp:$versions.okhttp"
+okhttp.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+deps.okhttp = okhttp
 
 def dagger = [:]
 dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
@@ -64,11 +79,28 @@ butterknife.runtime = "com.jakewharton:butterknife:$versions.butterknife"
 butterknife.compiler = "com.jakewharton:butterknife-compiler:$versions.butterknife"
 deps.butterknife = butterknife
 
+def lombok = [:]
+lombok.runtime = "org.projectlombok:lombok:$versions.lombok"
+lombok.compiler = "org.projectlombok:lombok:$versions.lombok"
+deps.lombok = lombok
+deps.jsr250_api = "javax.annotation:jsr250-api:$versions.jsr250_api"
+
 def glide = [:]
 glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
 deps.glide = glide
 
+def firebase = [:]
+firebase.core = "com.google.firebase:firebase-core:$versions.firebase_core"
+firebase.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.firebase_crashlytics"
+deps.firebase = firebase
+
+deps.lottie = "com.airbnb.android:lottie:$versions.stetho"
+deps.stetho = "com.facebook.stetho:stetho:$versions.stetho"
+deps.easyprefs = "com.pixplicity.easyprefs:library:$versions.easyprefs"
+deps.joda_time = "joda-time:joda-time:$versions.joda_time"
+deps.rv_divider = "com.github.fondesa:recycler-view-divider:$versions.rv_divider"
+deps.searchliveo = "com.github.rudsonlive:searchliveo:$versions.searchliveo"
 deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
 deps.junit = "junit:junit:$versions.junit"
@@ -76,6 +108,7 @@ deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 deps.rx_binding = "com.jakewharton.rxbinding3:rxbinding:$versions.rx_binding"
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
 ext.deps = deps
 
 def build_versions = [:]
@@ -83,6 +116,16 @@ build_versions.min_sdk = 21
 build_versions.target_sdk = 28
 build_versions.build_tools = "28.0.3"
 ext.build_versions = build_versions
+
+def default_config = [:]
+default_config.compile_sdk = 28
+
+default_config.app_id = "io.github.ovso.healthcare"
+default_config.min_sdk = 21
+default_config.target_sdk = 28
+default_config.version_code = 1
+default_config.version_name = "1.0.0"
+ext.default_config = default_config
 
 def addRepos(RepositoryHandler handler) {
   handler.google()

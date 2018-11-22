@@ -17,14 +17,14 @@ repositories {
 
 android {
 
-  compileSdkVersion rootProject.compile_sdk_version
+  compileSdkVersion default_config.compile_sdk
 
   defaultConfig {
-    applicationId rootProject.application_id
-    minSdkVersion rootProject.min_sdk_version
-    targetSdkVersion rootProject.target_sdk_version
-    versionCode rootProject.version_code
-    versionName rootProject.version_name
+    applicationId default_config.app_id
+    minSdkVersion default_config.min_sdk
+    targetSdkVersion default_config.target_sdk
+    versionCode default_config.version_code
+    versionName default_config.version_name
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 
@@ -49,18 +49,15 @@ dependencies {
   androidTestImplementation 'androidx.test:runner:1.1.0'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
-  // androidx
   implementation deps.support.app_compat
   implementation deps.support.v4
   implementation deps.support.design
   implementation deps.constraint_layout
 
-  // aac room
   implementation deps.room.runtime
   annotationProcessor deps.room.compiler
   implementation deps.room.rxjava2
 
-  // aac lifecycle
   implementation deps.lifecycle.runtime
   implementation deps.lifecycle.extensions
   implementation deps.lifecycle.java8
@@ -68,61 +65,43 @@ dependencies {
   implementation deps.lifecycle.livedata
   implementation deps.lifecycle.livedata_core
 
-  // dagger
   implementation deps.dagger.runtime
   implementation deps.dagger.android
   implementation deps.dagger.android_support
   annotationProcessor deps.dagger.compiler
   annotationProcessor deps.dagger.android_support_compiler
 
-  // glide
   implementation deps.glide.runtime
   annotationProcessor deps.glide.compiler
 
-  // butterknife
   implementation deps.butterknife.runtime
   annotationProcessor deps.butterknife.compiler
 
-  // rxjava
   implementation deps.rxjava2
   implementation deps.rx_android
   implementation deps.rx_binding
 
-  // timber
+  compileOnly deps.lombok.runtime
+  annotationProcessor deps.lombok.compiler
+  compileOnly deps.jsr250_api
+
+  implementation deps.retrofit.runtime
+  implementation deps.retrofit.gson
+  implementation deps.retrofit.rxjava2
+
+  implementation deps.okhttp.runtime
+  implementation deps.okhttp.logging_interceptor
+
+  implementation deps.firebase.core
+  implementation deps.firebase.crashlytics
+
+  implementation deps.searchliveo
+  implementation deps.rv_divider
+  implementation deps.joda_time
   implementation deps.timber
-
-  // lombok
-  compileOnly "org.projectlombok:lombok:$lombok_version"
-  annotationProcessor "org.projectlombok:lombok:$lombok_version"
-  compileOnly 'javax.annotation:jsr250-api:1.0'
-
-  // retrofit
-  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-  implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-  implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-  implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-  implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-
-  // firebase
-  implementation "com.google.firebase:firebase-core:$firebase_core_version"
-  implementation "com.crashlytics.sdk.android:crashlytics:$firebase_crashlytics_version"
-
-  // UI
-  implementation "com.github.jd-alexander:LikeButton:$like_button_version"
-  implementation "com.github.rudsonlive:searchliveo:$searchliveo_version"
-  implementation "com.github.fondesa:recycler-view-divider:$recyclerview_divider_version"
-
-  // joda time
-  implementation "joda-time:joda-time:$joda_time_version"
-
-  // prefs
-  implementation "com.pixplicity.easyprefs:library:$easyprefs_version"
-
-  // stetho
-  implementation "com.facebook.stetho:stetho:$stetho_version"
-
-  // lottie
-  implementation "com.airbnb.android:lottie:$lottie_version"
+  implementation deps.easyprefs
+  implementation deps.stetho
+  implementation deps.lottie
 }
 
 apply plugin: 'com.google.gms.google-services'
