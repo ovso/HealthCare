@@ -115,20 +115,14 @@ deps.google_service = "com.google.gms:google-services:$versions.google_service"
 
 ext.deps = deps
 
-def build_versions = [:]
-build_versions.min_sdk = 21
-build_versions.target_sdk = 28
-build_versions.build_tools = "28.0.3"
-ext.build_versions = build_versions
-
 def default_config = [:]
 default_config.compile_sdk = 28
-
 default_config.app_id = "io.github.ovso.healthcare"
 default_config.min_sdk = 21
 default_config.target_sdk = 28
 default_config.version_code = 1
 default_config.version_name = "1.0.0"
+
 ext.default_config = default_config
 
 def addRepos(RepositoryHandler handler) {
