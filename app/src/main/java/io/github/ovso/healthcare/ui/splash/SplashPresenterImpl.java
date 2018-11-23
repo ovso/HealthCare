@@ -44,6 +44,7 @@ public class SplashPresenterImpl implements SplashPresenter {
   }
 
   private void goMain() {
+    view.applyTransition();
     view.finish();
     view.navigateToMain();
   }

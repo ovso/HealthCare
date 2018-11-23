@@ -17,5 +17,7 @@ public interface SplashPresenter extends LifecycleObserver {
     void navigateToMain();
 
     void finish();
+
+    void applyTransition();
   }
 }

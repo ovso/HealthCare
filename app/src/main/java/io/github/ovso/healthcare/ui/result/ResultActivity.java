@@ -77,6 +77,7 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
   }
 
   @Override public void setupSwipeRefresh() {
+    swipeRefresh.setColorSchemeResources(R.color.colorPrimaryDark);
     swipeRefresh.setOnRefreshListener(() -> presenter.onSwipeRefresh());
   }
 

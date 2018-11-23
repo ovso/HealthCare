@@ -15,6 +15,10 @@ public class SplashActivity extends BaseActivity implements SplashPresenter.View
     startActivity(new Intent(getApplicationContext(), MainActivity.class));
   }
 
+  @Override public void applyTransition() {
+
+  }
+
   @Override public void onBackPressed() {
     presenter.onBackPressed();
     super.onBackPressed();
