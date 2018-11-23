@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import com.google.android.material.navigation.NavigationView;
+import de.psdev.licensesdialog.LicensesDialogFragment;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
@@ -29,7 +31,8 @@ import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
-    DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener {
+    DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener,
+    NavigationView.OnNavigationItemSelectedListener {
 
   @Inject MainPresenter presenter;
   @Inject MainAdapter adapter;
@@ -111,12 +114,7 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   }
 
   @Override public void setupNavigationView() {
-    navigationView.setNavigationItemSelectedListener(
-        item -> {
-          drawer.closeDrawer(GravityCompat.START);
-          navigateToLike();
-          return true;
-        });
+    navigationView.setNavigationItemSelectedListener(this);
   }
 
   @Override public void showEmptyAni() {
@@ -129,9 +127,26 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     emptyAniView.setVisibility(View.GONE);
   }
 
-  private void navigateToLike() {
+  @Override
+  public void navigateToLike() {
     Intent intent = new Intent(this, LikeActivity.class);
     startActivity(intent);
+  }
+
+  @Override public void showMessage(String msg) {
+    new AlertDialog.Builder(this).setMessage(msg)
+        .setPositiveButton(android.R.string.ok, null)
+        .show();
+  }
+
+  @Override public void showLicenses() {
+    final LicensesDialogFragment fragment = new LicensesDialogFragment.Builder(this)
+        .setNotices(R.raw.licenses)
+        .setShowFullLicenseText(false)
+        .setIncludeOwnLicense(true)
+        .build();
+
+    fragment.show(getSupportFragmentManager(), null);
   }
 
   @Override public void onItemClick(DiseaseEntity disease) {
@@ -157,7 +172,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   }
 
   @Override public void onBackPressed() {
-
     presenter.onBackPressed(drawer.isDrawerOpen(GravityCompat.START));
+  }
+
+  @Override public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    return presenter.onNavigationItemSelected(menuItem.getItemId());
   }
 }

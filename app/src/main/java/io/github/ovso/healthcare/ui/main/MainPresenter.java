@@ -21,6 +21,8 @@ public interface MainPresenter extends LifecycleObserver {
 
   void onItemLikeClick(DiseaseEntity item, boolean checked);
 
+  boolean onNavigationItemSelected(int itemId);
+
   interface View {
 
     void setupRecyclerView();
@@ -46,5 +48,11 @@ public interface MainPresenter extends LifecycleObserver {
     void showEmptyAni();
 
     void hideEmpthAni();
+
+    void navigateToLike();
+
+    void showMessage(String msg);
+
+    void showLicenses();
   }
 }

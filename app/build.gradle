@@ -88,6 +88,7 @@ dependencies {
   implementation deps.easyprefs
   implementation deps.stetho
   implementation deps.lottie
+  implementation deps.licensesdialog
 }
 
 apply plugin: 'com.google.gms.google-services'

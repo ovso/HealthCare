@@ -29,6 +29,7 @@ versions.stetho = '1.5.0'
 versions.lottie = '2.8.0'
 versions.google_service = '4.0.1'
 versions.fabric_gradle = '1.+'
+versions.licensesdialog = '1.9.0'
 
 def deps = [:]
 
@@ -112,6 +113,7 @@ deps.rx_binding = "com.jakewharton.rxbinding3:rxbinding:$versions.rx_binding"
 deps.android_gradle = "com.android.tools.build:gradle:$versions.android_gradle"
 deps.fabric_gradle = "io.fabric.tools:gradle:$versions.fabric_gradle"
 deps.google_service = "com.google.gms:google-services:$versions.google_service"
+deps.licensesdialog = "de.psdev.licensesdialog:licensesdialog:$versions.licensesdialog"
 
 ext.deps = deps
 

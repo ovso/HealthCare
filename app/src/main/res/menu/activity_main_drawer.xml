@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
   <group android:checkableBehavior="none">
     <item
-        android:id="@+id/nav_opensource"
-        android:icon="@drawable/ic_lightbulb_outline"
-        android:title="@string/opensource_license"/>
+        android:id="@+id/nav_like"
+        android:icon="@drawable/ic_like"
+        android:title="@string/help"/>
     <item
         android:id="@+id/nav_help"
         android:icon="@drawable/ic_help_outline"
         android:title="@string/help"/>
+    <item
+        android:id="@+id/nav_license"
+        android:icon="@drawable/ic_lightbulb_outline"
+        android:title="@string/opensource_license"/>
   </group>
 
 </menu>

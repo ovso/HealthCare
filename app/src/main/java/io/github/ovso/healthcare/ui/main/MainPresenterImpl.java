@@ -86,6 +86,22 @@ public class MainPresenterImpl implements MainPresenter {
     database.diseaseDao().update(item);
   }
 
+  @Override public boolean onNavigationItemSelected(int itemId) {
+    switch (itemId) {
+      case R.id.nav_like:
+        view.navigateToLike();
+        break;
+      case R.id.nav_help:
+        view.showMessage("도움말");
+        break;
+      case R.id.nav_license:
+        view.showLicenses();
+        break;
+    }
+    view.closeDrawer();
+    return false;
+  }
+
   @Override public void changedSearch(CharSequence charSequence) {
     String search = charSequence.toString().replaceAll("\\p{Z}", "");
     Timber.d("search = " + search);
