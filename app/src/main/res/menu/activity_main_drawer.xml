@@ -5,7 +5,7 @@
     <item
         android:id="@+id/nav_like"
         android:icon="@drawable/ic_like"
-        android:title="@string/help"/>
+        android:title="@string/like"/>
     <item
         android:id="@+id/nav_help"
         android:icon="@drawable/ic_help_outline"
