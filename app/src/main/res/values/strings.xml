@@ -17,10 +17,12 @@
   <string name="web_share">사이트 공유</string>
   <string name="like">좋아요</string>
   <string name="version_check">버전 확인</string>
-  <string name="nav_appversion">현재버전 :</string>
-  <string name="nav_newversion">최신버전 :</string>
+  <string name="nav_appversion">현재버전:</string>
+  <string name="nav_newversion">최신버전:</string>
   <string name="all_nextline">\n</string>
   <string name="all_share">공유</string>
   <string name="all_appshare">앱 공유</string>
   <string name="all_recommendapp">이 앱을 추천해드려요\n\n</string>
+  <string name="all_hyphen">-</string>
+  <string name="all_pipeline">|</string>
 </resources>

@@ -151,7 +151,10 @@ public class MainPresenterImpl implements MainPresenter {
     String appVerPrefix = resourceProvider.getString(R.string.nav_appversion);
     String newVerPrefix = resourceProvider.getString(R.string.nav_newversion);
     String nextline = resourceProvider.getString(R.string.all_nextline);
+    String appName = resourceProvider.getString(R.string.app_name);
+    String hyphen = resourceProvider.getString(R.string.all_hyphen);
     StringBuffer builder = new StringBuffer();
+    builder.append(hyphen).append(appName).append(hyphen).append(nextline);
     builder.append(appVerPrefix).append(appVersion);
     builder.append(nextline);
     builder.append(newVerPrefix).append(newVersion);
