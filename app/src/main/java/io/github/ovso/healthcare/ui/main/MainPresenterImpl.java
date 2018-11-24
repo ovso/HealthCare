@@ -98,12 +98,24 @@ public class MainPresenterImpl implements MainPresenter {
       case R.id.nav_help:
         view.showMessage("도움말");
         break;
+      case R.id.nav_share:
+        String title = resourceProvider.getString(R.string.app_name);
+        view.share(title, getShareText());
+        break;
       case R.id.nav_license:
         view.showLicenses();
         break;
     }
     view.closeDrawer();
     return false;
+  }
+
+  private String getShareText() {
+    String link = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID;
+    String recommend = resourceProvider.getString(R.string.all_recommendapp);
+    StringBuffer buffer = new StringBuffer();
+    buffer.append(recommend).append(link);
+    return buffer.toString();
   }
 
   private void reqVersion() {

@@ -31,8 +31,10 @@ import io.github.ovso.healthcare.ui.like.LikeActivity;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
 import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
+import io.github.ovso.healthcare.utils.ActivityUtils;
 import javax.inject.Inject;
 import spencerstudios.com.bungeelib.Bungee;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
     DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener,
@@ -161,6 +163,10 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   @Override public void showAppVersion(String versions) {
     TextView view = navigationView.getHeaderView(0).findViewById(R.id.version_text_view);
     view.setText(versions);
+  }
+
+  @Override public void share(String subject, String text) {
+    ActivityUtils.share(this, subject, text);
   }
 
   @Override public void onItemClick(DiseaseEntity disease) {
