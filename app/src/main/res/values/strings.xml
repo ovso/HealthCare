@@ -18,4 +18,7 @@
   <string name="like">좋아요</string>
   <string name="version_check">버전 확인</string>
   <string name="app_share">앱 공유</string>
+  <string name="nav_appversion">현재버전 :</string>
+  <string name="nav_newversion">최신버전 :</string>
+  <string name="all_nextline">\n</string>
 </resources>

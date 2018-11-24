@@ -117,18 +117,33 @@ public class MainPresenterImpl implements MainPresenter {
 
           @Override public void onNext(String version) {
             Timber.d("version = " + version);
-            String storeVersion = Optional.ofNullable(version).orElse(BuildConfig.VERSION_NAME);
 
+            String appVersion = BuildConfig.VERSION_NAME;
+            String newVersion = Optional.ofNullable(version).orElse(BuildConfig.VERSION_NAME);
+
+            view.showAppVersion(toVersions(appVersion, newVersion));
           }
 
           @Override public void onError(Throwable e) {
             Timber.d(e);
+            String appVersion = BuildConfig.VERSION_NAME;
+            view.showAppVersion(toVersions(appVersion, appVersion));
           }
 
           @Override public void onComplete() {
-            Timber.d("onComplete()");
           }
         });
+  }
+
+  private String toVersions(String appVersion, String newVersion) {
+    String appVerPrefix = resourceProvider.getString(R.string.nav_appversion);
+    String newVerPrefix = resourceProvider.getString(R.string.nav_newversion);
+    String nextline = resourceProvider.getString(R.string.all_nextline);
+    StringBuffer builder = new StringBuffer();
+    builder.append(appVerPrefix).append(appVersion);
+    builder.append(nextline);
+    builder.append(newVerPrefix).append(newVersion);
+    return builder.toString();
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

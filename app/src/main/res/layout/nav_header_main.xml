@@ -7,7 +7,7 @@
     android:layout_height="176dp"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
@@ -23,14 +23,13 @@
       />
 
   <TextView
+      android:id="@+id/version_text_view"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      tools:text="v 0.0.1"
+      android:layout_marginLeft="16dp"
+      android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+      android:textColor="@android:color/white"
+      tools:text="현재버전 : 1.0.1\n최신버전 : 1.0.1"
       />
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="zzzzzz"
-      />
 </LinearLayout>

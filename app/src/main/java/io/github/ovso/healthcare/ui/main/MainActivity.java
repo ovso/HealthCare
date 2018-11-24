@@ -6,6 +6,7 @@ import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -155,6 +156,11 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
         .build();
 
     fragment.show(getSupportFragmentManager(), null);
+  }
+
+  @Override public void showAppVersion(String versions) {
+    TextView view = navigationView.getHeaderView(0).findViewById(R.id.version_text_view);
+    view.setText(versions);
   }
 
   @Override public void onItemClick(DiseaseEntity disease) {

@@ -24,9 +24,4 @@ public class VersionRequest {
   private String getUrl() {
     return store_url + BuildConfig.APPLICATION_ID;
   }
-  /*
-  private String getUrl() {
-    return store_url + BuildConfig.APPLICATION_ID;
-  }
-  */
 }

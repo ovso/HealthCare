@@ -54,5 +54,7 @@ public interface MainPresenter extends LifecycleObserver {
     void showMessage(String msg);
 
     void showLicenses();
+
+    void showAppVersion(String versions);
   }
 }
