@@ -5,6 +5,7 @@ import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.ui.base.BaseActivity;
 import io.github.ovso.healthcare.ui.main.MainActivity;
 import javax.inject.Inject;
+import spencerstudios.com.bungeelib.Bungee;
 
 public class SplashActivity extends BaseActivity implements SplashPresenter.View {
 
@@ -15,13 +16,8 @@ public class SplashActivity extends BaseActivity implements SplashPresenter.View
     startActivity(new Intent(getApplicationContext(), MainActivity.class));
   }
 
-  @Override public void applyTransition() {
-
-  }
-
-  @Override public void onBackPressed() {
-    presenter.onBackPressed();
-    super.onBackPressed();
+  @Override public void pendingTransition() {
+    Bungee.slideLeft(this);
   }
 
   @Override protected int getLayoutResID() {

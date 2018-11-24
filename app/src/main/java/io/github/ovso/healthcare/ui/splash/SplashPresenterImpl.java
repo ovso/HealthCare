@@ -44,9 +44,9 @@ public class SplashPresenterImpl implements SplashPresenter {
   }
 
   private void goMain() {
-    view.applyTransition();
-    view.finish();
     view.navigateToMain();
+    view.pendingTransition();
+    view.finish();
   }
 
   private void assetsToDb() {
@@ -83,15 +83,6 @@ public class SplashPresenterImpl implements SplashPresenter {
   }
 
   @Override public void onDestroy() {
-    clear();
-  }
-
-  private void clear() {
     compositeDisposable.clear();
-  }
-
-  @Override public void onBackPressed() {
-    clear();
-    view.finish();
   }
 }

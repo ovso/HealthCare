@@ -89,6 +89,7 @@ dependencies {
   implementation deps.stetho
   implementation deps.lottie
   implementation deps.licensesdialog
+  implementation deps.bungee
 }
 
 apply plugin: 'com.google.gms.google-services'

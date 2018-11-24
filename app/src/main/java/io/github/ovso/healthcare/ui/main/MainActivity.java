@@ -31,6 +31,7 @@ import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
 import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
+import spencerstudios.com.bungeelib.Bungee;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
     DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener,
@@ -44,6 +45,11 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
   @BindView(R.id.navigation_view) NavigationView navigationView;
   @BindView(R.id.search_liveo) SearchLiveo searchLiveo;
   @BindView(R.id.empty_animation) LottieAnimationView emptyAniView;
+
+  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Bungee.fade(this);
+  }
 
   @Override protected int getLayoutResID() {
     return R.layout.activity_main;

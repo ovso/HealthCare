@@ -11,13 +11,11 @@ public interface SplashPresenter extends LifecycleObserver {
   @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
   void onDestroy();
 
-  void onBackPressed();
-
   interface View {
     void navigateToMain();
 
     void finish();
 
-    void applyTransition();
+    void pendingTransition();
   }
 }
