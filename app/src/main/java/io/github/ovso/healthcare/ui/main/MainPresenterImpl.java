@@ -1,24 +1,27 @@
 package io.github.ovso.healthcare.ui.main;
 
 import android.text.TextUtils;
-import androidx.lifecycle.LifecycleOwner;
+import io.github.ovso.healthcare.BuildConfig;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.db.AppDatabase;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
+import io.github.ovso.healthcare.data.network.VersionRequest;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import java.util.List;
+import java.util.Optional;
 import timber.log.Timber;
 
 public class MainPresenterImpl implements MainPresenter {
 
-  private final LifecycleOwner lifeCycleOwner;
+  private final VersionRequest versionRequest;
   private MainPresenter.View view;
   private ResourceProvider resourceProvider;
   private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -28,13 +31,13 @@ public class MainPresenterImpl implements MainPresenter {
 
   public MainPresenterImpl(MainPresenter.View $view, ResourceProvider $ResourceProvider,
       SchedulersFacade $schedulers, BaseAdapterDataModel<DiseaseEntity> $adapterDataModel,
-      AppDatabase $database, LifecycleOwner $lifeCycleOwner) {
+      AppDatabase $database, VersionRequest $versionRequest) {
     view = $view;
     resourceProvider = $ResourceProvider;
     schedulers = $schedulers;
     adapterDataModel = $adapterDataModel;
     database = $database;
-    lifeCycleOwner = $lifeCycleOwner;
+    versionRequest = $versionRequest;
   }
 
   @Override public void onCreate() {
@@ -45,6 +48,7 @@ public class MainPresenterImpl implements MainPresenter {
     view.setupRecyclerView();
 
     reqDatabase();
+    reqVersion();
   }
 
   @Override
@@ -100,6 +104,31 @@ public class MainPresenterImpl implements MainPresenter {
     }
     view.closeDrawer();
     return false;
+  }
+
+  private void reqVersion() {
+    versionRequest.version()
+        .subscribeOn(schedulers.io())
+        .observeOn(schedulers.ui())
+        .subscribe(new Observer<String>() {
+          @Override public void onSubscribe(Disposable d) {
+            compositeDisposable.add(d);
+          }
+
+          @Override public void onNext(String version) {
+            Timber.d("version = " + version);
+            String storeVersion = Optional.ofNullable(version).orElse(BuildConfig.VERSION_NAME);
+
+          }
+
+          @Override public void onError(Throwable e) {
+            Timber.d(e);
+          }
+
+          @Override public void onComplete() {
+            Timber.d("onComplete()");
+          }
+        });
   }
 
   @Override public void changedSearch(CharSequence charSequence) {

@@ -90,6 +90,7 @@ dependencies {
   implementation deps.lottie
   implementation deps.licensesdialog
   implementation deps.bungee
+  implementation deps.jsoup
 }
 
 apply plugin: 'com.google.gms.google-services'

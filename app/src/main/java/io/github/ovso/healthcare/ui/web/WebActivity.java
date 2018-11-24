@@ -153,7 +153,7 @@ public class WebActivity extends AppCompatActivity {
     sendIntent.setAction(Intent.ACTION_SEND);
     sendIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
     sendIntent.setType("text/plain");
-    startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.share)));
+    startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.web_share)));
   }
 
   @OnClick(R.id.web_browser_button)

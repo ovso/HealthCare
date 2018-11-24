@@ -31,6 +31,7 @@ versions.google_service = '4.0.1'
 versions.fabric_gradle = '1.+'
 versions.licensesdialog = '1.9.0'
 versions.bungee = '1.0'
+versions.jsoup = '1.10.3'
 
 def deps = [:]
 
@@ -116,6 +117,7 @@ deps.fabric_gradle = "io.fabric.tools:gradle:$versions.fabric_gradle"
 deps.google_service = "com.google.gms:google-services:$versions.google_service"
 deps.licensesdialog = "de.psdev.licensesdialog:licensesdialog:$versions.licensesdialog"
 deps.bungee = "com.github.Binary-Finery:Bungee:$versions.bungee"
+deps.jsoup = "org.jsoup:jsoup:$versions.jsoup"
 
 ext.deps = deps
 
