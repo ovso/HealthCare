@@ -28,8 +28,8 @@ public class ResultRequest extends BaseRequest<ResultService> {
     return EndPoint.RESULT.getUrl();
   }
 
-  public Single<Search> getResult(String q, String pageToken) {
-    return getApi().getResult(createQueryMap(q, pageToken));
+  public Single<Search> search(String q, String pageToken) {
+    return getApi().search(createQueryMap(q, pageToken));
   }
 
   private Map<String, Object> createQueryMap(String q, String pageToken) {

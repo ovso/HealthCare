@@ -45,14 +45,14 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public void setupRecyclerView() {
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    recyclerView.setAdapter(adapter);
     EndlessOnScrollListener scrollListener =
         new EndlessOnScrollListener.Builder().setLayoutManager(recyclerView.getLayoutManager())
             .setOnLoadMoreListener(this)
-            .setVisibleThreshold(15)
+            .setVisibleThreshold(5)
             .build();
     recyclerView.addOnScrollListener(scrollListener);
     recyclerView.setTag(scrollListener);
-    recyclerView.setAdapter(adapter);
   }
 
   @Override public void setupActionBar() {

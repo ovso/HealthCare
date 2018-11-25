@@ -8,6 +8,6 @@ import retrofit2.http.QueryMap;
 
 public interface ResultService {
   @GET("youtube/v3/search")
-  Single<Search> getResult(@QueryMap Map<String, Object> queryMap);
+  Single<Search> search(@QueryMap Map<String, Object> queryMap);
 
 }

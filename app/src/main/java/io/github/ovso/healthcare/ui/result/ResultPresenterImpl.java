@@ -1,6 +1,7 @@
 package io.github.ovso.healthcare.ui.result;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.ResultRequest;
@@ -51,7 +52,7 @@ public class ResultPresenterImpl implements ResultPresenter {
   private void reqVideo() {
     view.showLoading();
     if (!ObjectUtils.isEmpty(diseaseName)) {
-      request.getResult(diseaseName, nextPageToken)
+      request.search(diseaseName, nextPageToken)
           .subscribeOn(schedulers.io())
           .observeOn(schedulers.ui())
           .subscribe(new SingleObserver<Search>() {
@@ -113,6 +114,8 @@ public class ResultPresenterImpl implements ResultPresenter {
   @Override public void onLoadMore() {
     Timber.d("onLoadMore");
     Timber.d("nextPageToken = " + nextPageToken);
-    reqVideo();
+    if (!TextUtils.isEmpty(nextPageToken)) {
+      reqVideo();
+    }
   }
 }
