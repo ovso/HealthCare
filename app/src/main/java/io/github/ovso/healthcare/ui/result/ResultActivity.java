@@ -11,7 +11,7 @@ import butterknife.BindView;
 import com.airbnb.lottie.LottieAnimationView;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
-import io.github.ovso.healthcare.ui.base.BaseActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.base.listener.EndlessOnScrollListener;

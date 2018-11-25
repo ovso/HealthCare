@@ -2,7 +2,7 @@ package io.github.ovso.healthcare.ui.splash;
 
 import android.content.Intent;
 import io.github.ovso.healthcare.R;
-import io.github.ovso.healthcare.ui.base.BaseActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.main.MainActivity;
 import javax.inject.Inject;
 import spencerstudios.com.bungeelib.Bungee;

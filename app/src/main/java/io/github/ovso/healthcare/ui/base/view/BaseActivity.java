@@ -1,4 +1,4 @@
-package io.github.ovso.healthcare.ui.base;
+package io.github.ovso.healthcare.ui.base.view;
 
 import android.os.Bundle;
 import android.view.MenuItem;

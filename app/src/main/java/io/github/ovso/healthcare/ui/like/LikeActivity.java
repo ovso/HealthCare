@@ -12,7 +12,7 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
-import io.github.ovso.healthcare.ui.base.BaseActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.like.adapter.LikeAdapter;

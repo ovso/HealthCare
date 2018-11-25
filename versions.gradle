@@ -21,6 +21,7 @@ versions.lombok = '1.16.18'
 versions.jsr250_api = '1.0'
 versions.firebase_core = '16.0.4'
 versions.firebase_crashlytics = '2.9.5'
+versions.firebase_ads = '17.1.0'
 versions.searchliveo = '1.1.2'
 versions.rv_divider = '2.0.1'
 versions.joda_time = '2.10'
@@ -97,6 +98,7 @@ deps.glide = glide
 def firebase = [:]
 firebase.core = "com.google.firebase:firebase-core:$versions.firebase_core"
 firebase.crashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.firebase_crashlytics"
+firebase.ads = "com.google.firebase:firebase-ads:$versions.firebase_ads"
 deps.firebase = firebase
 
 deps.jsr250_api = "javax.annotation:jsr250-api:$versions.jsr250_api"

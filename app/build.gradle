@@ -80,6 +80,7 @@ dependencies {
 
   implementation deps.firebase.core
   implementation deps.firebase.crashlytics
+  implementation deps.firebase.ads
 
   implementation deps.searchliveo
   implementation deps.rv_divider

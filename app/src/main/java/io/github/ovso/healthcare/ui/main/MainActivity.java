@@ -2,7 +2,6 @@ package io.github.ovso.healthcare.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +24,7 @@ import de.psdev.licensesdialog.LicensesDialogFragment;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
-import io.github.ovso.healthcare.ui.base.BaseActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.like.LikeActivity;
 import io.github.ovso.healthcare.ui.main.adapter.MainAdapter;
@@ -34,7 +33,6 @@ import io.github.ovso.healthcare.ui.result.ResultActivity;
 import io.github.ovso.healthcare.utils.ActivityUtils;
 import javax.inject.Inject;
 import spencerstudios.com.bungeelib.Bungee;
-import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements MainPresenter.View,
     DiseaseOnItemClickListener<DiseaseEntity>, SearchLiveo.OnSearchListener,
