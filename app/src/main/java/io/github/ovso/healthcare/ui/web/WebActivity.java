@@ -18,9 +18,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.Portal;
-import io.github.ovso.healthcare.ui.base.view.AdsActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 
-public class WebActivity extends AdsActivity {
+public class WebActivity extends BaseActivity {
 
   @BindView(R.id.toolbar) Toolbar toolbar;
   @BindView(R.id.web_view) WebView webView;

@@ -14,13 +14,13 @@ import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.listener.BaseOnItemClickListener;
 import io.github.ovso.healthcare.ui.base.listener.EndlessOnScrollListener;
-import io.github.ovso.healthcare.ui.base.view.AdsActivity;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.result.adapter.ResultAdapter;
 import io.github.ovso.healthcare.ui.video.VideoActivity;
 import io.github.ovso.healthcare.ui.web.WebActivity;
 import javax.inject.Inject;
 
-public class ResultActivity extends AdsActivity implements ResultPresenter.View,
+public class ResultActivity extends BaseActivity implements ResultPresenter.View,
     BaseOnItemClickListener<SearchItem>, EndlessOnScrollListener.OnLoadMoreListener {
 
   @BindView(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefresh;

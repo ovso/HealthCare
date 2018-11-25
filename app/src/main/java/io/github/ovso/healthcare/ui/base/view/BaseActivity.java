@@ -7,10 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.support.DaggerAppCompatActivity;
 import io.github.ovso.healthcare.R;
 
-public abstract class BaseActivity extends DaggerAppCompatActivity {
+public abstract class BaseActivity extends AdsActivity {
   protected @BindView(R.id.toolbar) Toolbar toolbar;
   private Unbinder bind;
 
