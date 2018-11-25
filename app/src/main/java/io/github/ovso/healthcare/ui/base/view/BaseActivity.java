@@ -1,7 +1,6 @@
 package io.github.ovso.healthcare.ui.base.view;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
@@ -22,13 +21,6 @@ public abstract class BaseActivity extends AdsActivity {
   }
 
   protected abstract int getLayoutResID();
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    if (android.R.id.home == item.getItemId()) {
-      finish();
-    }
-    return super.onOptionsItemSelected(item);
-  }
 
   @Override protected void onDestroy() {
     super.onDestroy();
