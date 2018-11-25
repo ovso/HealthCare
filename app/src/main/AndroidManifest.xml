@@ -50,7 +50,6 @@
         android:theme="@style/AppTheme.NoActionBar"
         >
     </activity>
-    <!--android:theme="@android:style/Theme.Black.NoTitleBar"-->
 
     <meta-data
         android:name="io.fabric.ApiKey"

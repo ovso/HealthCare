@@ -9,7 +9,7 @@ public interface ResultPresenter extends LifecycleObserver {
   @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
   void onCreate();
 
-  boolean onOptionsItemSelected(int itemId);
+  void onOptionsItemSelected(int itemId);
 
   void onItemClick(SearchItem item);
 

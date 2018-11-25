@@ -25,7 +25,9 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
   protected abstract int getLayoutResID();
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
-    finish();
+    if (android.R.id.home == item.getItemId()) {
+      finish();
+    }
     return super.onOptionsItemSelected(item);
   }
 

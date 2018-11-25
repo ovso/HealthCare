@@ -1,6 +1,7 @@
 package io.github.ovso.healthcare.ui.result;
 
 import android.content.Intent;
+import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.network.ResultRequest;
 import io.github.ovso.healthcare.data.network.model.youtube.Search;
@@ -85,13 +86,14 @@ public class ResultPresenterImpl implements ResultPresenter {
     }
   }
 
-  @Override public boolean onOptionsItemSelected(int itemId) {
-    if (itemId != android.R.id.home) {
-      view.navigateToWeb(itemId, diseaseName);
-    } else {
-      view.finish();
+  @Override public void onOptionsItemSelected(int itemId) {
+    switch (itemId) {
+      case R.id.action_google:
+      case R.id.action_naver:
+      case R.id.action_daum:
+        view.navigateToWeb(itemId, diseaseName);
+        break;
     }
-    return true;
   }
 
   @Override public void onItemClick(SearchItem item) {

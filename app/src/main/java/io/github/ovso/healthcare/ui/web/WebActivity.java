@@ -5,24 +5,22 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import android.view.MenuItem;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ContentLoadingProgressBar;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.Portal;
+import io.github.ovso.healthcare.ui.base.view.AdsActivity;
 
-public class WebActivity extends AppCompatActivity {
+public class WebActivity extends AdsActivity {
 
   @BindView(R.id.toolbar) Toolbar toolbar;
   @BindView(R.id.web_view) WebView webView;
@@ -35,13 +33,15 @@ public class WebActivity extends AppCompatActivity {
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     overridePendingTransition(R.anim.slide_up, R.anim.no_change);
-    setContentView(R.layout.activity_web);
-    ButterKnife.bind(this);
 
     setupActionBar();
     setupData();
     setupWebView();
     load();
+  }
+
+  @Override protected int getLayoutResID() {
+    return R.layout.activity_web;
   }
 
   private void setupActionBar() {
@@ -80,11 +80,6 @@ public class WebActivity extends AppCompatActivity {
       progressBar.setProgress(newProgress);
       super.onProgressChanged(view, newProgress);
     }
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    finish();
-    return true;
   }
 
   @Override public void finish() {
