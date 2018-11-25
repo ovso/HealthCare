@@ -1,7 +1,6 @@
 package io.github.ovso.healthcare.ui.like;
 
 import android.content.Intent;
-import android.view.MenuItem;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +11,9 @@ import com.fondesa.recyclerviewdivider.RecyclerViewDivider;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
-import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterView;
 import io.github.ovso.healthcare.ui.base.listener.DiseaseOnItemClickListener;
+import io.github.ovso.healthcare.ui.base.view.BaseActivity;
 import io.github.ovso.healthcare.ui.like.adapter.LikeAdapter;
 import io.github.ovso.healthcare.ui.result.ResultActivity;
 import javax.inject.Inject;
@@ -74,11 +73,6 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
 
   @Override public void onItemClick(DiseaseEntity entity) {
     presenter.onItemClick(entity);
-  }
-
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    finish();
-    return true;
   }
 
   @Override public boolean isTitle() {
