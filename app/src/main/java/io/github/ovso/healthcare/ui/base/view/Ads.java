@@ -7,9 +7,9 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import io.github.ovso.healthcare.Security;
 
-public class AdsView {
+public class Ads {
 
-  public static AdView getAdmobAdView(Context context) {
+  public static AdView getAdmobView(Context context) {
     AdView adView = new AdView(context);
     adView.setAdSize(AdSize.SMART_BANNER);
     adView.setAdUnitId(Security.ADMOB_BANNER_UNIT_ID.getValue());

@@ -4,21 +4,24 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class AdsActivity extends DaggerAppCompatActivity {
-  InterstitialAd interstitialAd;
+  protected InterstitialAd interstitialAd;
+  protected AdView adView;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    interstitialAd = AdsView.getAdmobInterstitialAd(getApplicationContext());
+    interstitialAd = Ads.getAdmobInterstitialAd(getApplicationContext());
     interstitialAd.setAdListener(new AdListener() {
       @Override public void onAdClosed() {
         super.onAdClosed();
         finish();
       }
     });
+    adView = Ads.getAdmobView(getApplicationContext());
   }
 
   @Override public void onBackPressed() {

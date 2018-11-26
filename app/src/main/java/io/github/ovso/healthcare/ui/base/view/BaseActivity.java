@@ -1,6 +1,7 @@
 package io.github.ovso.healthcare.ui.base.view;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
@@ -9,7 +10,8 @@ import butterknife.Unbinder;
 import io.github.ovso.healthcare.R;
 
 public abstract class BaseActivity extends AdsActivity {
-  protected @BindView(R.id.toolbar) Toolbar toolbar;
+  @BindView(R.id.toolbar) protected Toolbar toolbar;
+  @BindView(R.id.framelayout_all_adcontainer) ViewGroup adContainer;
   private Unbinder bind;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public abstract class BaseActivity extends AdsActivity {
     bind = ButterKnife.bind(this);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayShowTitleEnabled(isTitle());
+    adContainer.addView(adView);
   }
 
   protected abstract int getLayoutResID();

@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.splash.SplashActivity"
     android:visibility="gone"
+    tools:context=".ui.splash.SplashActivity"
     >
 
   <com.google.android.material.appbar.AppBarLayout
@@ -23,6 +23,6 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         />
   </com.google.android.material.appbar.AppBarLayout>
-
+  <include layout="@layout/layout_container_ads"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

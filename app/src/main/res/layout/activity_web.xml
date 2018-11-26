@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.web.WebActivity"
     android:background="@color/item_background"
+    tools:context=".ui.web.WebActivity"
     >
 
   <com.google.android.material.appbar.AppBarLayout
@@ -32,9 +32,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@drawable/shape_web_divider"
         android:orientation="vertical"
         android:showDividers="middle"
-        android:divider="@drawable/shape_web_divider"
         >
       <WebView
           android:id="@+id/web_view"
@@ -43,6 +43,7 @@
           android:layout_weight="1"
           />
       <include layout="@layout/web_navigation"/>
+      <include layout="@layout/layout_container_ads"/>
     </LinearLayout>
 
     <androidx.core.widget.ContentLoadingProgressBar
