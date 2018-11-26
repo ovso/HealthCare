@@ -103,6 +103,14 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
     emptyAniView.setVisibility(View.GONE);
   }
 
+  @Override public void hideRecyclerView() {
+    recyclerView.setVisibility(View.GONE);
+  }
+
+  @Override public void showRecyclerView() {
+    recyclerView.setVisibility(View.VISIBLE);
+  }
+
   @Override public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_result, menu);
     return super.onCreateOptionsMenu(menu);

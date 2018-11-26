@@ -67,6 +67,14 @@ public class LikeActivity extends BaseActivity implements LikePresenter.View,
     emptyAniView.setVisibility(View.GONE);
   }
 
+  @Override public void hideRecyclerView() {
+    recyclerView.setVisibility(View.GONE);
+  }
+
+  @Override public void showRecyclerView() {
+    recyclerView.setVisibility(View.VISIBLE);
+  }
+
   @Override public void onItemLikeClick(DiseaseEntity item, boolean checked) {
     presenter.onItemLikeClick(item, checked);
   }

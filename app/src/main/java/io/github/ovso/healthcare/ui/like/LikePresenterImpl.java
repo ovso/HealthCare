@@ -57,8 +57,10 @@ public class LikePresenterImpl implements LikePresenter, Observer<List<DiseaseEn
   private void showEmpty() {
     if (adapterDataModel.getSize() == 0) {
       view.showEmptyAni();
+      view.hideRecyclerView();
     } else {
       view.hideEmpthAni();
+      view.showRecyclerView();
     }
   }
 }

@@ -58,5 +58,9 @@ public interface MainPresenter extends LifecycleObserver {
     void showAppVersion(String versions);
 
     void share(String title, String text);
+
+    void showRecyclerView();
+
+    void hideRecyclerView();
   }
 }

@@ -167,6 +167,14 @@ public class MainActivity extends BaseActivity implements MainPresenter.View,
     ActivityUtils.share(this, subject, text);
   }
 
+  @Override public void showRecyclerView() {
+    recyclerView.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void hideRecyclerView() {
+    recyclerView.setVisibility(View.GONE);
+  }
+
   @Override public void onItemClick(DiseaseEntity disease) {
     presenter.onItemClick(disease);
   }

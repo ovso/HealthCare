@@ -29,5 +29,9 @@ public interface LikePresenter extends LifecycleObserver {
     void showEmptyAni();
 
     void hideEmpthAni();
+
+    void hideRecyclerView();
+
+    void showRecyclerView();
   }
 }

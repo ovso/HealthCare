@@ -44,5 +44,9 @@ public interface ResultPresenter extends LifecycleObserver {
     void showEmptyAni();
 
     void hideEmpthAni();
+
+    void hideRecyclerView();
+
+    void showRecyclerView();
   }
 }

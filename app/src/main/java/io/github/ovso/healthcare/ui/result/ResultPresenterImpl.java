@@ -82,8 +82,10 @@ public class ResultPresenterImpl implements ResultPresenter {
   private void showEmpty() {
     if (adapterDataModel.getSize() == 0) {
       view.showEmptyAni();
+      view.hideRecyclerView();
     } else {
       view.hideEmpthAni();
+      view.showRecyclerView();
     }
   }
 
