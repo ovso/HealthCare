@@ -129,7 +129,7 @@ default_config.app_id = "io.github.ovso.healthcare"
 default_config.min_sdk = 21
 default_config.target_sdk = 28
 default_config.version_code = 1
-default_config.version_name = "1.0.0"
+//default_config.version_name = "1.0.0"
 
 ext.default_config = default_config
 
