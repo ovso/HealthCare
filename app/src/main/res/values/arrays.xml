@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="help_msg">
+    <item>건강보험 진료환자 발생이 많은 상위 질병 6~700여개의 이름과 코드를 제공해요.</item>
+    <item>검색 기능과 좋아요(하트) 기능이 있어요.</item>
+    <item>질병 관련 영상을 찾아드려요.</item>
+    <item>질병 관련 영상을 찾아드려요.</item>
+    <item>영상으로 부족할 땐 구글, 다음, 네이버 자동검색을 이용해보세요. 추가 영상이나 글을 볼 수 있어요.</item>
+  </string-array>
+</resources>

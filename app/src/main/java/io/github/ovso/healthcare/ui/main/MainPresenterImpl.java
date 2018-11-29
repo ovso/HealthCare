@@ -7,6 +7,7 @@ import io.github.ovso.healthcare.data.db.AppDatabase;
 import io.github.ovso.healthcare.data.db.model.DiseaseEntity;
 import io.github.ovso.healthcare.data.network.VersionRequest;
 import io.github.ovso.healthcare.ui.base.adapter.BaseAdapterDataModel;
+import io.github.ovso.healthcare.utils.ObjectUtils;
 import io.github.ovso.healthcare.utils.ResourceProvider;
 import io.github.ovso.healthcare.utils.SchedulersFacade;
 import io.reactivex.Observable;
@@ -98,7 +99,7 @@ public class MainPresenterImpl implements MainPresenter {
         view.navigateToLike();
         break;
       case R.id.nav_help:
-        view.showMessage("도움말");
+        view.showMessage(getHelpMessage());
         break;
       case R.id.nav_share:
         String title = resourceProvider.getString(R.string.app_name);
@@ -110,6 +111,17 @@ public class MainPresenterImpl implements MainPresenter {
     }
     view.closeDrawer();
     return false;
+  }
+
+  private String getHelpMessage() {
+    String[] helps = resourceProvider.getStringArray(R.array.help_msg);
+    StringBuilder builder = new StringBuilder();
+    for (String help : helps) {
+      builder.append("> ").append(help);
+      builder.append("\n\n");
+    }
+
+    return builder.toString();
   }
 
   private String getShareText() {
@@ -133,7 +145,7 @@ public class MainPresenterImpl implements MainPresenter {
             Timber.d("version = " + version);
 
             String appVersion = BuildConfig.VERSION_NAME;
-            String newVersion = Optional.ofNullable(version).orElse(BuildConfig.VERSION_NAME);
+            String newVersion = !ObjectUtils.isEmpty(version) ? version : BuildConfig.VERSION_NAME;
 
             view.showAppVersion(toVersions(appVersion, newVersion));
           }
