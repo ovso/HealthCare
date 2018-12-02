@@ -1,6 +1,7 @@
 package io.github.ovso.healthcare.ui.result;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,6 +110,12 @@ public class ResultActivity extends BaseActivity implements ResultPresenter.View
 
   @Override public void showRecyclerView() {
     recyclerView.setVisibility(View.VISIBLE);
+  }
+
+  @Override public void navigateToBrowser(String url) {
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(url));
+    startActivity(intent);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

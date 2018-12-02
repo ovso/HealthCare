@@ -48,5 +48,7 @@ public interface ResultPresenter extends LifecycleObserver {
     void hideRecyclerView();
 
     void showRecyclerView();
+
+    void navigateToBrowser(String url);
   }
 }

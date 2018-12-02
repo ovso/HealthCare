@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import io.github.ovso.healthcare.R;
 import io.github.ovso.healthcare.data.KeyName;
+import io.github.ovso.healthcare.data.Portal;
 import io.github.ovso.healthcare.data.network.ResultRequest;
 import io.github.ovso.healthcare.data.network.model.youtube.Search;
 import io.github.ovso.healthcare.data.network.model.youtube.SearchItem;
@@ -92,6 +93,9 @@ public class ResultPresenterImpl implements ResultPresenter {
   @Override public void onOptionsItemSelected(int itemId) {
     switch (itemId) {
       case R.id.action_google:
+        String url = Portal.toUrl(itemId, diseaseName);
+        view.navigateToBrowser(url);
+        break;
       case R.id.action_naver:
       case R.id.action_daum:
         view.navigateToWeb(itemId, diseaseName);
@@ -114,8 +118,6 @@ public class ResultPresenterImpl implements ResultPresenter {
   }
 
   @Override public void onLoadMore() {
-    Timber.d("onLoadMore");
-    Timber.d("nextPageToken = " + nextPageToken);
     if (!TextUtils.isEmpty(nextPageToken)) {
       reqVideo();
     }
