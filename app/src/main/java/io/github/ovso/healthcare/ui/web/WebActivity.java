@@ -157,4 +157,16 @@ public class WebActivity extends BaseActivity {
     intent.setData(Uri.parse(webView.getUrl()));
     startActivity(intent);
   }
+
+  @Override protected void onStop() {
+    webView.onPause();
+    webView.pauseTimers();
+    super.onStop();
+  }
+
+  @Override protected void onResume() {
+    webView.onResume();
+    webView.resumeTimers();
+    super.onResume();
+  }
 }

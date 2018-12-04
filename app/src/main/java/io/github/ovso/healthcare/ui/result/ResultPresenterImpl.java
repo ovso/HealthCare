@@ -93,9 +93,6 @@ public class ResultPresenterImpl implements ResultPresenter {
   @Override public void onOptionsItemSelected(int itemId) {
     switch (itemId) {
       case R.id.action_google:
-        String url = Portal.toUrl(itemId, diseaseName);
-        view.navigateToBrowser(url);
-        break;
       case R.id.action_naver:
       case R.id.action_daum:
         view.navigateToWeb(itemId, diseaseName);
