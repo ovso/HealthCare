@@ -39,7 +39,7 @@ public class SplashPresenterImpl implements SplashPresenter {
       assetsToDb();
     } else {
       compositeDisposable.add(
-          Single.just("delay").delay(1, TimeUnit.SECONDS).subscribe(s -> goMain()));
+          Single.just("delay").delay(200, TimeUnit.MILLISECONDS).subscribe(s -> goMain()));
     }
   }
 
