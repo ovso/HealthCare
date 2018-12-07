@@ -17,7 +17,7 @@ public class SplashActivity extends BaseActivity implements SplashPresenter.View
   }
 
   @Override public void pendingTransition() {
-    Bungee.fade(this);
+    Bungee.fade(this); // animation
   }
 
   @Override protected int getLayoutResID() {
